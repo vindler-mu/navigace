@@ -576,11 +576,21 @@
                     <div class="instructions" style="background: ${bgColor}; border: 1px solid ${borderColor};">
                         <h4 style="color: ${textColor};">Cesta k regálu:</h4>
                         <ol style="color: ${textColor};">
-                            <li>Jděte do ${locationInfo.patro}</li>
-                            <li>Vstupte do ${locationInfo.studovna}</li>
-                            <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                            <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
-                            <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                            ${locationInfo.area === 'Antropologie' ? `
+                                <li>Jděte do 1. NP - Studovna Matematiky</li>
+                                <li>Projděte studovnou Matematiky a dejte se po schodech dolů do Studovny Antropologie</li>
+                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
+                                <li>Najděte téma <strong>${bookData.popis}</strong></li>
+                                <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
+                                <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                            ` : `
+                                <li>Jděte do ${locationInfo.patro}</li>
+                                <li>Vstupte do ${locationInfo.studovna}</li>
+                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
+                                <li>Najděte téma <strong>${bookData.popis}</strong></li>
+                                <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
+                                <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                            `}
                         </ol>
                     </div>
                     
