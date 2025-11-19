@@ -1323,13 +1323,17 @@
             }
         }
 
-        document.getElementById('acceptCookies').addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookieConsent').classList.remove('show');
-        });
-
         window.addEventListener('load', function() {
             console.log('Page loaded');
+
+            // Cookie consent tlačítko
+            const acceptCookiesBtn = document.getElementById('acceptCookies');
+            if (acceptCookiesBtn) {
+                acceptCookiesBtn.addEventListener('click', function() {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieConsent').classList.remove('show');
+                });
+            }
 
             // Event listenery pro přepínač jazyka
             const langButtons = document.querySelectorAll('.lang-btn');
