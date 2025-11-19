@@ -340,6 +340,215 @@
                 width: 100%;
             }
         }
+
+        /* Plovoucí tlačítko pro feedback */
+        .feedback-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-weight: 500;
+        }
+
+        .feedback-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.5);
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Modal content */
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.5em;
+        }
+
+        .modal-header p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #6c757d;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .modal-close:hover {
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #6c757d;
+            font-size: 0.85em;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #2c3e50;
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -770,6 +979,9 @@
                 return;
             }
 
+            // Ulož signaturu pro feedback modal
+            lastSearchedSignature = inputSignature;
+
             showLoading();
 
             setTimeout(() => {
@@ -928,5 +1140,112 @@
             <button id="acceptCookies" class="cookie-consent-button">Rozumím</button>
         </div>
     </div>
+
+    <!-- Plovoucí tlačítko pro feedback -->
+    <button id="feedbackButton" class="feedback-button">💬 Nahlásit problém</button>
+
+    <!-- Modal pro feedback -->
+    <div id="feedbackModal" class="modal-overlay">
+        <div class="modal-content" style="position: relative;">
+            <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Nahlásit problém</h3>
+                <p>Pomožte nám zlepšit aplikaci. Popište, co se stalo nebo co jste nenašli.</p>
+            </div>
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="feedbackSignature">Signatura, kterou jste hledali</label>
+                    <input type="text" id="feedbackSignature" placeholder="např. 52, 531.6, Acta Geodynamica...">
+                    <small>Nepovinné - pomůže nám to lépe pochopit problém</small>
+                </div>
+                <div class="form-group">
+                    <label for="feedbackDescription">Popis problému *</label>
+                    <textarea id="feedbackDescription" placeholder="Popište co se stalo, co jste nenašli, nebo jaká byla chyba..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="feedbackEmail">Váš email (pro odpověď)</label>
+                    <input type="email" id="feedbackEmail" placeholder="vas@email.cz">
+                    <small>Nepovinné - pokud chcete odpověď</small>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="closeFeedbackModal()">Zrušit</button>
+                    <button type="submit" class="btn btn-primary">Odeslat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Feedback modal funkce
+        let lastSearchedSignature = '';
+
+        function openFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('show');
+            // Předvyplň signaturu, pokud něco hledali
+            if (lastSearchedSignature) {
+                document.getElementById('feedbackSignature').value = lastSearchedSignature;
+            }
+        }
+
+        function closeFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.remove('show');
+            // Vyčisti formulář
+            document.getElementById('feedbackForm').reset();
+        }
+
+        // Event listenery pro modal
+        document.getElementById('feedbackButton').addEventListener('click', openFeedbackModal);
+
+        // Zavři modal při kliknutí mimo obsah
+        document.getElementById('feedbackModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFeedbackModal();
+            }
+        });
+
+        // Zavři modal klávesou Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFeedbackModal();
+            }
+        });
+
+        // Odeslání formuláře
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const signature = document.getElementById('feedbackSignature').value;
+            const description = document.getElementById('feedbackDescription').value;
+            const email = document.getElementById('feedbackEmail').value;
+
+            // Vytvoř email
+            const subject = 'Knihovní navigátor - připomínka';
+            let body = 'Popis problému:\n' + description + '\n\n';
+
+            if (signature) {
+                body += 'Hledaná signatura: ' + signature + '\n\n';
+            }
+
+            if (email) {
+                body += 'Kontaktní email pro odpověď: ' + email + '\n\n';
+            }
+
+            body += '---\n';
+            body += 'URL: ' + window.location.href + '\n';
+            body += 'Datum: ' + new Date().toLocaleString('cs-CZ');
+
+            // Otevři email klienta
+            const mailtoLink = 'mailto:pujcovnauk@sci.muni.cz?subject=' +
+                encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+
+            window.location.href = mailtoLink;
+
+            // Zavři modal po malé prodlevě
+            setTimeout(closeFeedbackModal, 500);
+        });
+    </script>
 </body>
 </html>
