@@ -264,6 +264,82 @@
             color: #6c757d;
             font-size: 0.95em;
         }
+
+        /* Cookie consent banner */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .cookie-consent.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .cookie-consent-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-consent-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-consent-text p {
+            margin: 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .cookie-consent-button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .cookie-consent-button:hover {
+            background: #229954;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-consent-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-consent-button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -821,9 +897,36 @@
             }
         });
 
+        // Cookie consent
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // Zobraz banner po malé prodlevě pro lepší UX
+                setTimeout(function() {
+                    document.getElementById('cookieConsent').classList.add('show');
+                }, 500);
+            }
+        }
+
+        document.getElementById('acceptCookies').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').classList.remove('show');
+        });
+
         window.addEventListener('load', function() {
             searchInput.focus();
+            checkCookieConsent();
         });
     </script>
+
+    <!-- Cookie consent banner -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-consent-content">
+            <div class="cookie-consent-text">
+                <p>ℹ️ Tato stránka nepoužívá cookies ani nesbírá osobní údaje. Další informace o pravidlech PřF MU najdete na <a href="https://www.sci.muni.cz/" target="_blank" style="color: #3498db; text-decoration: underline;">sci.muni.cz</a>.</p>
+            </div>
+            <button id="acceptCookies" class="cookie-consent-button">Rozumím</button>
+        </div>
+    </div>
 </body>
 </html>
