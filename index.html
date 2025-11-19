@@ -223,6 +223,47 @@
                 margin-right: 0;
             }
         }
+
+        /* Autocomplete našeptávač */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .autocomplete-items div {
+            padding: 12px 15px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #f8f9fa;
+        }
+
+        .autocomplete-active {
+            background-color: #e9ecef !important;
+        }
+
+        .autocomplete-signature {
+            font-weight: 600;
+            color: #CD0000;
+            margin-right: 8px;
+        }
+
+        .autocomplete-description {
+            color: #6c757d;
+            font-size: 0.95em;
+        }
     </style>
 </head>
 <body>
@@ -241,6 +282,7 @@
                     placeholder="Zadejte signaturu nebo téma..."
                     autocomplete="off"
                 >
+                <div id="autocomplete-list" class="autocomplete-items"></div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
@@ -565,15 +607,33 @@
             // Info o změně názvu časopisu
             let journalNameChange = '';
             if (bookData.popis_stary && bookData.popis_stary.trim() !== '') {
+                const oldNames = bookData.popis_stary.split(';').map(name => name.trim()).filter(name => name !== '');
+                let oldNamesHtml;
+                if (oldNames.length > 1) {
+                    oldNamesHtml = '<ul style="margin: 5px 0 0 0; padding-left: 20px;">' +
+                        oldNames.map(name => `<li>${name}</li>`).join('') +
+                        '</ul>';
+                } else {
+                    oldNamesHtml = ` ${oldNames[0]}`;
+                }
                 journalNameChange = `
                     <div class="info-box" style="background: rgba(255, 165, 0, 0.1); border: 1px solid rgba(255, 165, 0, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
-                        <p style="margin: 0; color: #cc8800;">📰 <strong>Dříve vycházel jako:</strong> ${bookData.popis_stary}</p>
+                        <p style="margin: 0; color: #cc8800;">📰 <strong>Dříve vycházel jako:</strong>${oldNamesHtml}</p>
                     </div>
                 `;
             } else if (bookData.popis_novy && bookData.popis_novy.trim() !== '') {
+                const newNames = bookData.popis_novy.split(';').map(name => name.trim()).filter(name => name !== '');
+                let newNamesHtml;
+                if (newNames.length > 1) {
+                    newNamesHtml = '<ul style="margin: 5px 0 0 0; padding-left: 20px;">' +
+                        newNames.map(name => `<li>${name}</li>`).join('') +
+                        '</ul>';
+                } else {
+                    newNamesHtml = ` ${newNames[0]}`;
+                }
                 journalNameChange = `
                     <div class="info-box" style="background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
-                        <p style="margin: 0; color: #0066cc;">📰 <strong>Nyní vychází jako:</strong> ${bookData.popis_novy}</p>
+                        <p style="margin: 0; color: #0066cc;">📰 <strong>Nyní vychází jako:</strong>${newNamesHtml}</p>
                     </div>
                 `;
             }
@@ -673,21 +733,122 @@
             }, 300);
         }
 
+        // Autocomplete našeptávač
+        let currentFocus = -1;
+        const autocompleteList = document.getElementById('autocomplete-list');
+        const searchInput = document.getElementById('searchInput');
+
+        function showAutocomplete(value) {
+            if (!value || value.length < 2) {
+                closeAutocomplete();
+                return;
+            }
+
+            const valueLower = value.toLowerCase();
+            const suggestions = [];
+
+            // Hledání v databázi - najdi prvních 10 shod
+            for (let i = 0; i < knihovniBaze.length && suggestions.length < 10; i++) {
+                const item = knihovniBaze[i];
+                const signMatch = item.signatura && item.signatura.toLowerCase().includes(valueLower);
+                const descMatch = item.popis && item.popis.toLowerCase().includes(valueLower);
+                const oldNameMatch = item.popis_stary && item.popis_stary.toLowerCase().includes(valueLower);
+
+                if (signMatch || descMatch || oldNameMatch) {
+                    suggestions.push(item);
+                }
+            }
+
+            if (suggestions.length === 0) {
+                closeAutocomplete();
+                return;
+            }
+
+            // Zobraz návrhy
+            autocompleteList.innerHTML = '';
+            autocompleteList.style.display = 'block';
+
+            suggestions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <span class="autocomplete-signature">${item.signatura || ''}</span>
+                    <span class="autocomplete-description">${item.popis}</span>
+                `;
+                div.addEventListener('click', function() {
+                    searchInput.value = item.signatura || item.popis;
+                    closeAutocomplete();
+                    findBook();
+                });
+                autocompleteList.appendChild(div);
+            });
+        }
+
+        function closeAutocomplete() {
+            autocompleteList.innerHTML = '';
+            autocompleteList.style.display = 'none';
+            currentFocus = -1;
+        }
+
+        function addActive(items) {
+            if (!items) return false;
+            removeActive(items);
+            if (currentFocus >= items.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = items.length - 1;
+            items[currentFocus].classList.add('autocomplete-active');
+        }
+
+        function removeActive(items) {
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.remove('autocomplete-active');
+            }
+        }
+
         // Event listenery
-        document.getElementById('searchInput').addEventListener('input', function() {
+        searchInput.addEventListener('input', function() {
+            const value = this.value;
             clearTimeout(searchTimeout);
+
+            // Zobraz autocomplete
+            showAutocomplete(value);
+
+            // Spusť vyhledávání s delším timeoutem
             searchTimeout = setTimeout(findBook, 800);
         });
 
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                clearTimeout(searchTimeout);
-                findBook();
+        searchInput.addEventListener('keydown', function(e) {
+            const items = autocompleteList.getElementsByTagName('div');
+
+            if (e.key === 'ArrowDown') {
+                currentFocus++;
+                addActive(items);
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                currentFocus--;
+                addActive(items);
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (currentFocus > -1 && items[currentFocus]) {
+                    items[currentFocus].click();
+                } else {
+                    clearTimeout(searchTimeout);
+                    closeAutocomplete();
+                    findBook();
+                }
+            } else if (e.key === 'Escape') {
+                closeAutocomplete();
+            }
+        });
+
+        // Zavři autocomplete při kliknutí mimo
+        document.addEventListener('click', function(e) {
+            if (e.target !== searchInput) {
+                closeAutocomplete();
             }
         });
 
         window.addEventListener('load', function() {
-            document.getElementById('searchInput').focus();
+            searchInput.focus();
         });
     </script>
 </body>
