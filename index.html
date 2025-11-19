@@ -540,31 +540,6 @@
                 textColor = '#0c5460';
             }
 
-            let searchInfo = '';
-            
-            if (bookData.searchType === 'thematic') {
-                if (bookData.matchType === 'fuzzy') {
-                    searchInfo += `<div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        🔍 Nalezeno s překlepem: "<strong>${bookData.originalQuery}</strong>" → "<strong>${bookData.matchedKeyword}</strong>"
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
-                    </div>`;
-                } else if (bookData.matchedKeyword) {
-                    searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        💡 Nalezeno podle tématu: <strong>${bookData.matchedKeyword}</strong>
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
-                    </div>`;
-                } else {
-                    searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        💡 Nalezeno podle popisu tématu
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
-                    </div>`;
-                }
-            } else if (bookData.searchType === 'partial') {
-                searchInfo += `<div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                    ↗️ Nalezena podobná signatura
-                </div>`;
-            }
-            
             const nearbyBooks = getNearbyBooks(bookData.regal);
             let nearbySection = '';
             
@@ -640,7 +615,6 @@
 
             resultsDiv.innerHTML = `
                 <div class="result">
-                    ${searchInfo}
                     <div class="result-header">
                         <div class="signature" style="background: ${locationInfo.color}">${bookData.signatura}</div>
                         <div class="category">${bookData.popis}</div>
