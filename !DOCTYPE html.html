@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnihovnÃ­ navigÃ¡tor - PÅ™F MU</title>
+    
+    <!-- NaÄtenÃ­ datovÃ©ho souboru -->
+    <script src="knihovna_data.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e9ecef;
+            border-radius: 0;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #adb5bd;
+            background: white;
+            box-shadow: 0 0 0 2px rgba(108,117,125,0.1);
+        }
+
+        .search-input::placeholder {
+            color: #adb5bd;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .example-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .example-btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .result {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 0;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .signature {
+            background: #CD0000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-right: 15px;
+        }
+
+        .category {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .location-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .location-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 0;
+            border-left: 4px solid #CD0000;
+        }
+
+        .location-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .location-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .instructions {
+            background: #e7f3ff;
+            border: 1px solid #bee5eb;
+            border-radius: 0;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .instructions.physics {
+            background: rgba(205, 0, 0, 0.05);
+            border-color: rgba(205, 0, 0, 0.2);
+        }
+
+        .instructions h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .instructions.physics h4 {
+            color: #8b0000;
+        }
+
+        .instructions ol {
+            color: #0c5460;
+            padding-left: 20px;
+        }
+
+        .instructions.physics ol {
+            color: #8b0000;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 0;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .loading::after {
+            content: "";
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ""; }
+            40% { content: "."; }
+            60% { content: ".."; }
+            80%, 100% { content: "..."; }
+        }
+
+        /* MobilnÃ­ optimalizace */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .examples {
+                justify-content: flex-start;
+            }
+
+            .location-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .signature {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>KnihovnÃ­ navigÃ¡tor</h1>
+            <p>NaleznÄ›te fyzickÃ© umÃ­stÄ›nÃ­ knih v knihovnÄ› PÅ™F MU podle signatury</p>
+            <p style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">
+                <em>Tip: Funguje i s pÅ™eklepem! Zkuste "cerne diry" nebo "kvatova mechanika"</em>
+            </p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Zadejte signaturu (52-ABCD) nebo tÃ©ma (i s pÅ™eklepem: cerne diry)"
+                    autocomplete="off"
+                >
+            </div>
+            
+            <div class="examples">
+                <button class="example-btn" onclick="searchExample('52-ABCD')">52-ABCD</button>
+                <button class="example-btn" onclick="searchExample('cerne diry')">cerne diry</button>
+                <button class="example-btn" onclick="searchExample('538.93-XYZ')">538.93-XYZ</button>
+                <button class="example-btn" onclick="searchExample('kvatova mechanika')">kvatova mechanika</button>
+                <button class="example-btn" onclick="searchExample('531.6')">531.6</button>
+                <button class="example-btn" onclick="searchExample('elektromagetismus')">elektromagetismus</button>
+            </div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        let searchTimeout;
+
+        // Fuzzy search - Levenshtein distance algoritmus
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            const len1 = str1.length;
+            const len2 = str2.length;
+
+            if (len1 === 0) return len2;
+            if (len2 === 0) return len1;
+
+            for (let i = 0; i <= len2; i++) {
+                matrix[i] = [i];
+            }
+            for (let j = 0; j <= len1; j++) {
+                matrix[0][j] = j;
+            }
+
+            for (let i = 1; i <= len2; i++) {
+                for (let j = 1; j <= len1; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            return matrix[len2][len1];
+        }
+
+        // Fuzzy search pro klÃ­ÄovÃ¡ slova
+        function fuzzySearchKeywords(searchTerm) {
+            searchTerm = searchTerm.toLowerCase().trim();
+            let matches = [];
+            
+            for (let i = 0; i < knihovniBaze.length; i++) {
+                const item = knihovniBaze[i];
+                if (item.keywords) {
+                    for (let j = 0; j < item.keywords.length; j++) {
+                        const keyword = item.keywords[j].toLowerCase();
+                        const distance = levenshteinDistance(searchTerm, keyword);
+                        
+                        const maxDistance = keyword.length > 4 ? 2 : 1;
+                        
+                        if (distance <= maxDistance && distance > 0) {
+                            matches.push({
+                                ...item,
+                                matchType: 'fuzzy',
+                                matchedKeyword: keyword,
+                                fuzzyDistance: distance,
+                                originalQuery: searchTerm
+                            });
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            matches.sort((a, b) => a.fuzzyDistance - b.fuzzyDistance);
+            return matches;
+        }
+
+        // Najdi knihy v okolnÃ­ch regÃ¡lech
+        function getNearbyBooks(currentShelf) {
+            const shelves = currentShelf.includes('-') ? 
+                currentShelf.split('-').map(s => s.trim()) : [currentShelf];
+            
+            let nearbyBooks = [];
+            let allNeighbors = new Set();
+            
+            shelves.forEach(shelf => {
+                if (regalMap[shelf]) {
+                    regalMap[shelf].neighbors.forEach(neighbor => {
+                        allNeighbors.add(neighbor);
+                    });
+                }
+            });
+            
+            allNeighbors.forEach(neighbor => {
+                const booksInShelf = knihovniBaze.filter(book => 
+                    book.regal === neighbor || book.regal.includes(neighbor)
+                );
+                
+                if (booksInShelf.length > 0) {
+                    nearbyBooks.push({
+                        shelf: neighbor,
+                        area: regalMap[neighbor]?.area || "NeznÃ¡mÃ¡ oblast",
+                        books: booksInShelf.slice(0, 3)
+                    });
+                }
+            });
+            
+            return nearbyBooks;
+        }
+
+        // TÃ©matickÃ© vyhledÃ¡vÃ¡nÃ­ s fuzzy search
+        function findByKeywords(searchTerm) {
+            if (!searchTerm || searchTerm.trim() === '') {
+                return [];
+            }
+            
+            searchTerm = searchTerm.toLowerCase().trim();
+            let matches = [];
+            
+            for (let i = 0; i < knihovniBaze.length; i++) {
+                const item = knihovniBaze[i];
+                if (item.keywords) {
+                    for (let j = 0; j < item.keywords.length; j++) {
+                        if (item.keywords[j].toLowerCase().includes(searchTerm)) {
+                            matches.push({
+                                ...item,
+                                matchType: 'keyword',
+                                matchedKeyword: item.keywords[j]
+                            });
+                            break;
+                        }
+                    }
+                    
+                    if (item.popis.toLowerCase().includes(searchTerm)) {
+                        if (!matches.find(match => match.signatura === item.signatura)) {
+                            matches.push({
+                                ...item,
+                                matchType: 'description',
+                                matchedKeyword: null
+                            });
+                        }
+                    }
+                }
+            }
+            
+            if (matches.length === 0) {
+                const fuzzyMatches = fuzzySearchKeywords(searchTerm);
+                matches = fuzzyMatches;
+            }
+            
+            return matches;
+        }
+
+        // HlavnÃ­ vyhledÃ¡vacÃ­ funkce
+        function findSignature(inputSignature) {
+            if (!inputSignature || inputSignature.trim() === '') {
+                return null;
+            }
+
+            let originalInput = inputSignature.trim();
+            let cleanedSignature = originalInput;
+            
+            if (originalInput.includes('-')) {
+                cleanedSignature = originalInput.split('-')[0].trim();
+            }
+
+            for (let i = 0; i < knihovniBaze.length; i++) {
+                if (knihovniBaze[i].signatura === cleanedSignature) {
+                    return {
+                        ...knihovniBaze[i],
+                        searchType: 'exact',
+                        originalInput: originalInput,
+                        cleanedInput: cleanedSignature
+                    };
+                }
+            }
+
+            for (let i = 0; i < knihovniBaze.length; i++) {
+                if (knihovniBaze[i].signatura.startsWith(cleanedSignature)) {
+                    return {
+                        ...knihovniBaze[i],
+                        searchType: 'partial',
+                        originalInput: originalInput,
+                        cleanedInput: cleanedSignature
+                    };
+                }
+            }
+
+            const thematicResults = findByKeywords(originalInput);
+            if (thematicResults.length > 0) {
+                return {
+                    ...thematicResults[0],
+                    searchType: 'thematic',
+                    allMatches: thematicResults.length,
+                    originalInput: originalInput
+                };
+            }
+
+            return null;
+        }
+
+        function showResult(inputSignature, bookData) {
+            const resultsDiv = document.getElementById('results');
+            
+            let regalDisplay = bookData.regal;
+            let regalNote = "";
+            
+            if (bookData.regal.includes('-')) {
+                regalNote = " (knihy mohou bÃ½t v nÄ›kolika regÃ¡lech)";
+            }
+            
+            const instructionsClass = 'instructions physics';
+            let searchInfo = '';
+            
+            if (bookData.searchType === 'thematic') {
+                if (bookData.matchType === 'fuzzy') {
+                    searchInfo += `<div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+                        ðŸ” Nalezeno s pÅ™eklepem: "<strong>${bookData.originalQuery}</strong>" â†’ "<strong>${bookData.matchedKeyword}</strong>"
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                    </div>`;
+                } else if (bookData.matchedKeyword) {
+                    searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+                        ðŸ’¡ Nalezeno podle tÃ©matu: <strong>${bookData.matchedKeyword}</strong>
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                    </div>`;
+                } else {
+                    searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+                        ðŸ’¡ Nalezeno podle popisu tÃ©matu
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                    </div>`;
+                }
+            } else if (bookData.searchType === 'partial') {
+                searchInfo += `<div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+                    â†—ï¸ Nalezena podobnÃ¡ signatura
+                </div>`;
+            }
+            
+            const nearbyBooks = getNearbyBooks(bookData.regal);
+            let nearbySection = '';
+            
+            if (nearbyBooks.length > 0) {
+                nearbySection = `
+                    <div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; margin-top: 20px;">
+                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">ðŸ“ Knihy nablÃ­zku:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                `;
+                
+                nearbyBooks.forEach(shelf => {
+                    nearbySection += `
+                        <div style="background: white; padding: 12px; border: 1px solid #e9ecef;">
+                            <div style="font-weight: 600; color: #CD0000; margin-bottom: 5px;">RegÃ¡l ${shelf.shelf}</div>
+                            <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 8px;">${shelf.area}</div>
+                            <div style="font-size: 0.85em;">
+                    `;
+                    
+                    shelf.books.slice(0, 2).forEach(book => {
+                        nearbySection += `<div style="margin-bottom: 3px;">â€¢ ${book.signatura} - ${book.popis.substring(0, 40)}${book.popis.length > 40 ? '...' : ''}</div>`;
+                    });
+                    
+                    if (shelf.books.length > 2) {
+                        nearbySection += `<div style="color: #6c757d; font-style: italic;">...a ${shelf.books.length - 2} dalÅ¡Ã­ch</div>`;
+                    }
+                    
+                    nearbySection += `
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                nearbySection += `
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultsDiv.innerHTML = `
+                <div class="result">
+                    ${searchInfo}
+                    <div class="result-header">
+                        <div class="signature">${bookData.signatura}</div>
+                        <div class="category">${bookData.popis}</div>
+                    </div>
+                    
+                    <div class="location-info">
+                        <div class="location-item">
+                            <div class="location-label">RegÃ¡l</div>
+                            <div class="location-value">${regalDisplay}${regalNote}</div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-label">Studovna</div>
+                            <div class="location-value">Studovna Fyziky a VÅ¡eobecnostÃ­</div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-label">Patro</div>
+                            <div class="location-value">1. NP</div>
+                        </div>
+                    </div>
+
+                    <div class="${instructionsClass}">
+                        <h4>Cesta k regÃ¡lu:</h4>
+                        <ol>
+                            <li>JdÄ›te do 1. nadzemnÃ­ho patra</li>
+                            <li>Vstupte do studovny Fyziky po levÃ© stranÄ›</li>
+                            <li>NajdÄ›te regÃ¡l <strong>${regalDisplay}</strong></li>
+                            <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
+                            <li>PÃ­smena za ÄÃ­slem oznaÄujÃ­ vÄ›tÅ¡inou autory a jsou abecednÄ› seÅ™azena</li>
+                        </ol>
+                    </div>
+                    
+                    ${nearbySection}
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <div class="error">
+                    <strong>Nenalezeno</strong><br>
+                    ${message}<br><br>
+                    <small>Zkuste zadat pÅ™esnÄ›jÅ¡Ã­ signaturu nebo si vyberte z pÅ™Ã­kladÅ¯ vÃ½Å¡e.</small>
+                </div>
+            `;
+        }
+
+        function showLoading() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <div class="loading">
+                    HledÃ¡m knihu
+                </div>
+            `;
+        }
+
+        function findBook() {
+            const input = document.getElementById('searchInput');
+            const inputSignature = input.value.trim();
+
+            if (inputSignature === '') {
+                document.getElementById('results').innerHTML = '';
+                return;
+            }
+
+            showLoading();
+
+            setTimeout(() => {
+                const bookData = findSignature(inputSignature);
+
+                if (bookData) {
+                    showResult(inputSignature, bookData);
+                } else {
+                    showError(`Pro signaturu "${inputSignature}" nebyla nalezena Å¾Ã¡dnÃ¡ kniha.`);
+                }
+            }, 300);
+        }
+
+        function searchExample(signature) {
+            const input = document.getElementById('searchInput');
+            input.value = signature;
+            findBook();
+        }
+
+        // Event listenery
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(findBook, 800);
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                clearTimeout(searchTimeout);
+                findBook();
+            }
+        });
+
+        window.addEventListener('load', function() {
+            document.getElementById('searchInput').focus();
+        });
+    </script>
+</body>
+</html>
