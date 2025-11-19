@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KnihovnÃ­ navigÃ¡tor - PÅ™F MU</title>
+    <title>Knihovní navigátor - PřF MU</title>
     
-    <!-- NaÄtenÃ­ datovÃ©ho souboru -->
-    <script src="knihovna_data.js"></script>
+    <!-- Načtení datového souboru -->
+    <script src="data_navigace.js"></script>
     
     <style>
         * {
@@ -231,7 +231,7 @@
             80%, 100% { content: "..."; }
         }
 
-        /* MobilnÃ­ optimalizace */
+        /* Mobilní optimalizace */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -269,10 +269,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>KnihovnÃ­ navigÃ¡tor</h1>
-            <p>NaleznÄ›te fyzickÃ© umÃ­stÄ›nÃ­ knih v knihovnÄ› PÅ™F MU podle signatury</p>
+            <h1>Knihovní navigátor</h1>
+            <p>Nalezněte fyzické umístění knih v knihovně PřF MU podle signatury</p>
             <p style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">
-                <em>Tip: Funguje i s pÅ™eklepem! Zkuste "cerne diry" nebo "kvatova mechanika"</em>
+                <em>Tip: Funguje i s překlepem! Zkuste "cerne diry" nebo "kvatova mechanika"</em>
             </p>
         </div>
 
@@ -282,7 +282,7 @@
                     type="text" 
                     id="searchInput" 
                     class="search-input" 
-                    placeholder="Zadejte signaturu (52-ABCD) nebo tÃ©ma (i s pÅ™eklepem: cerne diry)"
+                    placeholder="Zadejte signaturu (52-ABCD) nebo téma (i s překlepem: cerne diry)"
                     autocomplete="off"
                 >
             </div>
@@ -335,7 +335,7 @@
             return matrix[len2][len1];
         }
 
-        // Fuzzy search pro klÃ­ÄovÃ¡ slova
+        // Fuzzy search pro klíčová slova
         function fuzzySearchKeywords(searchTerm) {
             searchTerm = searchTerm.toLowerCase().trim();
             let matches = [];
@@ -367,7 +367,7 @@
             return matches;
         }
 
-        // Najdi knihy v okolnÃ­ch regÃ¡lech
+        // Najdi knihy v okolních regálech
         function getNearbyBooks(currentShelf) {
             const shelves = currentShelf.includes('-') ? 
                 currentShelf.split('-').map(s => s.trim()) : [currentShelf];
@@ -391,7 +391,7 @@
                 if (booksInShelf.length > 0) {
                     nearbyBooks.push({
                         shelf: neighbor,
-                        area: regalMap[neighbor]?.area || "NeznÃ¡mÃ¡ oblast",
+                        area: regalMap[neighbor]?.area || "Neznámá oblast",
                         books: booksInShelf.slice(0, 3)
                     });
                 }
@@ -400,7 +400,7 @@
             return nearbyBooks;
         }
 
-        // TÃ©matickÃ© vyhledÃ¡vÃ¡nÃ­ s fuzzy search
+        // Tématické vyhledávání s fuzzy search
         function findByKeywords(searchTerm) {
             if (!searchTerm || searchTerm.trim() === '') {
                 return [];
@@ -443,7 +443,7 @@
             return matches;
         }
 
-        // HlavnÃ­ vyhledÃ¡vacÃ­ funkce
+        // Hlavní vyhledávací funkce
         function findSignature(inputSignature) {
             if (!inputSignature || inputSignature.trim() === '') {
                 return null;
@@ -498,7 +498,7 @@
             let regalNote = "";
             
             if (bookData.regal.includes('-')) {
-                regalNote = " (knihy mohou bÃ½t v nÄ›kolika regÃ¡lech)";
+                regalNote = " (knihy mohou být v několika regálech)";
             }
             
             const instructionsClass = 'instructions physics';
@@ -507,23 +507,23 @@
             if (bookData.searchType === 'thematic') {
                 if (bookData.matchType === 'fuzzy') {
                     searchInfo += `<div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ” Nalezeno s pÅ™eklepem: "<strong>${bookData.originalQuery}</strong>" â†’ "<strong>${bookData.matchedKeyword}</strong>"
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                        ðŸ” Nalezeno s překlepem: "<strong>${bookData.originalQuery}</strong>" â†’ "<strong>${bookData.matchedKeyword}</strong>"
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 } else if (bookData.matchedKeyword) {
                     searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ’¡ Nalezeno podle tÃ©matu: <strong>${bookData.matchedKeyword}</strong>
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                        ðŸ’¡ Nalezeno podle tématu: <strong>${bookData.matchedKeyword}</strong>
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 } else {
                     searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ’¡ Nalezeno podle popisu tÃ©matu
-                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejÃ­cÃ­ch signatur)` : ''}
+                        ðŸ’¡ Nalezeno podle popisu tématu
+                        ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 }
             } else if (bookData.searchType === 'partial') {
                 searchInfo += `<div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                    â†—ï¸ Nalezena podobnÃ¡ signatura
+                    â†—ï¸ Nalezena podobná signatura
                 </div>`;
             }
             
@@ -533,14 +533,14 @@
             if (nearbyBooks.length > 0) {
                 nearbySection = `
                     <div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; margin-top: 20px;">
-                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">ðŸ“ Knihy nablÃ­zku:</h4>
+                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">ðŸ“ Knihy nablízku:</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                 `;
                 
                 nearbyBooks.forEach(shelf => {
                     nearbySection += `
                         <div style="background: white; padding: 12px; border: 1px solid #e9ecef;">
-                            <div style="font-weight: 600; color: #CD0000; margin-bottom: 5px;">RegÃ¡l ${shelf.shelf}</div>
+                            <div style="font-weight: 600; color: #CD0000; margin-bottom: 5px;">Regál ${shelf.shelf}</div>
                             <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 8px;">${shelf.area}</div>
                             <div style="font-size: 0.85em;">
                     `;
@@ -550,7 +550,7 @@
                     });
                     
                     if (shelf.books.length > 2) {
-                        nearbySection += `<div style="color: #6c757d; font-style: italic;">...a ${shelf.books.length - 2} dalÅ¡Ã­ch</div>`;
+                        nearbySection += `<div style="color: #6c757d; font-style: italic;">...a ${shelf.books.length - 2} dalších</div>`;
                     }
                     
                     nearbySection += `
@@ -575,12 +575,12 @@
                     
                     <div class="location-info">
                         <div class="location-item">
-                            <div class="location-label">RegÃ¡l</div>
+                            <div class="location-label">Regál</div>
                             <div class="location-value">${regalDisplay}${regalNote}</div>
                         </div>
                         <div class="location-item">
                             <div class="location-label">Studovna</div>
-                            <div class="location-value">Studovna Fyziky a VÅ¡eobecnostÃ­</div>
+                            <div class="location-value">Studovna Fyziky a Všeobecností</div>
                         </div>
                         <div class="location-item">
                             <div class="location-label">Patro</div>
@@ -589,13 +589,13 @@
                     </div>
 
                     <div class="${instructionsClass}">
-                        <h4>Cesta k regÃ¡lu:</h4>
+                        <h4>Cesta k regálu:</h4>
                         <ol>
-                            <li>JdÄ›te do 1. nadzemnÃ­ho patra</li>
-                            <li>Vstupte do studovny Fyziky po levÃ© stranÄ›</li>
-                            <li>NajdÄ›te regÃ¡l <strong>${regalDisplay}</strong></li>
+                            <li>Jděte do 1. nadzemního patra</li>
+                            <li>Vstupte do studovny Fyziky po levé straně</li>
+                            <li>Najděte regál <strong>${regalDisplay}</strong></li>
                             <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
-                            <li>PÃ­smena za ÄÃ­slem oznaÄujÃ­ vÄ›tÅ¡inou autory a jsou abecednÄ› seÅ™azena</li>
+                            <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
                         </ol>
                     </div>
                     
@@ -610,7 +610,7 @@
                 <div class="error">
                     <strong>Nenalezeno</strong><br>
                     ${message}<br><br>
-                    <small>Zkuste zadat pÅ™esnÄ›jÅ¡Ã­ signaturu nebo si vyberte z pÅ™Ã­kladÅ¯ vÃ½Å¡e.</small>
+                    <small>Zkuste zadat přesnější signaturu nebo si vyberte z příkladů výše.</small>
                 </div>
             `;
         }
@@ -619,7 +619,7 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = `
                 <div class="loading">
-                    HledÃ¡m knihu
+                    Hledám knihu
                 </div>
             `;
         }
@@ -641,7 +641,7 @@
                 if (bookData) {
                     showResult(inputSignature, bookData);
                 } else {
-                    showError(`Pro signaturu "${inputSignature}" nebyla nalezena Å¾Ã¡dnÃ¡ kniha.`);
+                    showError(`Pro signaturu "${inputSignature}" nebyla nalezena žádná kniha.`);
                 }
             }, 300);
         }
