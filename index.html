@@ -40,8 +40,8 @@
         }
 
         .header h1 {
-            font-size: 2em;
-            font-weight: 300;
+            font-size: 2.5em;
+            font-weight: 600;
             color: #2c3e50;
             margin-bottom: 8px;
         }
@@ -555,7 +555,7 @@
     <div class="container">
         <div class="header">
             <h1>Knihovní navigátor</h1>
-            <p>Nalezněte fyzické umístění knih v knihovně PřF MU</p>
+            <p>Nalezněte fyzické umístění dokumentů v knihovně PřF MU</p>
         </div>
 
         <div class="search-section">
@@ -1167,6 +1167,8 @@
                     <input type="email" id="feedbackEmail" placeholder="vas@email.cz">
                     <small>Nepovinné - pokud chcete odpověď</small>
                 </div>
+                <!-- Honeypot pole (skryté pro lidi, viditelné pro roboty) -->
+                <input type="text" id="website" name="website" style="display: none;" tabindex="-1" autocomplete="off">
                 <div class="modal-buttons">
                     <button type="button" class="btn btn-secondary" onclick="closeFeedbackModal()">Zrušit</button>
                     <button type="submit" class="btn btn-primary">Odeslat</button>
@@ -1178,6 +1180,13 @@
     <script>
         // Feedback modal funkce
         let lastSearchedSignature = '';
+        let lastFeedbackTime = 0;
+
+        // Obfuskace emailu (ochrana proti scraperům)
+        function getLibraryEmail() {
+            const parts = ['pujcovnauk', 'sci', 'muni', 'cz'];
+            return parts[0] + '@' + parts[1] + '.' + parts[2] + '.' + parts[3];
+        }
 
         function openFeedbackModal() {
             const modal = document.getElementById('feedbackModal');
@@ -1216,6 +1225,24 @@
         document.getElementById('feedbackForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            // BEZPEČNOSTNÍ KONTROLY
+
+            // 1. Honeypot kontrola (ochrana proti robotům)
+            const honeypot = document.getElementById('website').value;
+            if (honeypot !== '') {
+                // Robot vyplnil skryté pole - tiše ignoruj
+                console.log('Spam detekován');
+                closeFeedbackModal();
+                return;
+            }
+
+            // 2. Rate limiting (max 1 odeslání za 60 sekund)
+            const now = Date.now();
+            if (now - lastFeedbackTime < 60000) {
+                alert('Můžete odeslat zpětnou vazbu pouze jednou za minutu. Zkuste to prosím později.');
+                return;
+            }
+
             const signature = document.getElementById('feedbackSignature').value;
             const description = document.getElementById('feedbackDescription').value;
             const email = document.getElementById('feedbackEmail').value;
@@ -1236,12 +1263,15 @@
             body += 'URL: ' + window.location.href + '\n';
             body += 'Datum: ' + new Date().toLocaleString('cs-CZ');
 
-            // Otevři email klienta
-            const mailtoLink = 'mailto:pujcovnauk@sci.muni.cz?subject=' +
+            // Otevři email klienta (s obfuskovaným emailem)
+            const mailtoLink = 'mailto:' + getLibraryEmail() + '?subject=' +
                 encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
 
             window.location.href = mailtoLink;
+
+            // Ulož čas posledního odeslání
+            lastFeedbackTime = now;
 
             // Zavři modal po malé prodlevě
             setTimeout(closeFeedbackModal, 500);
