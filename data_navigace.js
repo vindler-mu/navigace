@@ -16012,7 +16012,7 @@ const regalMap = {
     ],
     "patro": "1. NP",
     "studovna": "Studovna Fyziky",
-    "color": "#ffff33"
+    "color": "#d4a017"
   },
   "V2": {
     "area": "Všeobecnosti",
@@ -16021,7 +16021,7 @@ const regalMap = {
     ],
     "patro": "1. NP",
     "studovna": "Studovna Fyziky",
-    "color": "#ffff33"
+    "color": "#d4a017"
   },
   "VZ1": {
     "area": "Vědy o Zemi",
