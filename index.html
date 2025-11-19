@@ -1292,15 +1292,15 @@
             document.getElementById('cookieConsent').classList.remove('show');
         });
 
-        // Event listenery pro přepínač jazyka
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                setLanguage(lang);
-            });
-        });
-
         window.addEventListener('load', function() {
+            // Event listenery pro přepínač jazyka
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                });
+            });
+
             searchInput.focus();
             checkCookieConsent();
         });
