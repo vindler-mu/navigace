@@ -1,0 +1,18 @@
+# Logy
+*.log
+
+# Testovací soubory
+test_*.html
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup soubory
+*_backup.*
+*.bak
+
+# Systémové soubory
+.DS_Store
+Thumbs.db
