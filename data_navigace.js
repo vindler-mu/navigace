@@ -15432,817 +15432,1105 @@ const knihovniBaze = [
 // Mapa regálů a jejich sousedů
 const regalMap = {
   "12": {
-    "area": "Oblast ",
-    "neighbors": []
+    "area": "Neznámá oblast",
+    "neighbors": [],
+    "patro": "Neznámé",
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "17": {
-    "area": "Oblast ",
+    "area": "Neznámá oblast",
     "neighbors": [
       "18"
-    ]
+    ],
+    "patro": "Neznámé",
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "18": {
-    "area": "Oblast ",
+    "area": "Neznámá oblast",
     "neighbors": [
       "17"
-    ]
+    ],
+    "patro": "Neznámé",
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "4": {
-    "area": "Oblast ",
-    "neighbors": []
+    "area": "Neznámá oblast",
+    "neighbors": [],
+    "patro": "Neznámé",
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "A1": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A2",
       "A3"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A2": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A1",
       "A3",
       "A4"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A3": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A1",
       "A2",
       "A4",
       "A5"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A4": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A2",
       "A3",
       "A5",
       "A6"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A5": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A3",
       "A4",
       "A6",
       "A7"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A6": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A4",
       "A5",
       "A7",
       "A8"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A7": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A5",
       "A6",
       "A8",
       "A9"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A8": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A6",
       "A7",
       "A9"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A9": {
-    "area": "Oblast Astronomie",
+    "area": "Antropologie",
     "neighbors": [
       "A7",
       "A8"
-    ]
+    ],
+    "patro": "1. NP - mezipatro",
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "F1": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F2",
       "F3"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F10": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F11",
       "F12",
       "F8",
       "F9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F11": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F10",
       "F12",
       "F13",
       "F9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F12": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F10",
       "F11",
       "F13",
       "F14"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F13": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F11",
       "F12",
       "F14",
       "F15"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F14": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F12",
       "F13",
       "F15",
       "F16"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F15": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F13",
       "F14",
       "F16",
       "F17"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F16": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F14",
       "F15",
       "F17"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F17": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F15",
       "F16"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F2": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F1",
       "F3",
       "F4"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F3": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F1",
       "F2",
       "F4",
       "F5"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F4": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F2",
       "F3",
       "F5",
       "F6"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F5": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F3",
       "F4",
       "F6",
       "F7"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F6": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F4",
       "F5",
       "F7",
       "F8"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F7": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F5",
       "F6",
       "F8",
       "F9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F8": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F10",
       "F6",
       "F7",
       "F9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F9": {
-    "area": "Oblast Fyziky",
+    "area": "Fyzika",
     "neighbors": [
       "F10",
       "F11",
       "F7",
       "F8"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "M1": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M2",
       "M3"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M10": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M11",
       "M8",
       "M9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M11": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M10",
       "M13",
       "M9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M13": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M11",
       "M14",
       "M15"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M14": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M13",
       "M15",
       "M16"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M15": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M13",
       "M14",
       "M16",
       "M17"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M16": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M14",
       "M15",
       "M17",
       "M18"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M17": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M15",
       "M16",
       "M18",
       "M19"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M18": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M16",
       "M17",
       "M19",
       "M20"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M19": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M17",
       "M18",
       "M20",
       "M21"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M2": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M1",
       "M3",
       "M4"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M20": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M18",
       "M19",
       "M21",
       "M22"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M21": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M19",
       "M20",
       "M22"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M22": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M20",
       "M21"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M3": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M1",
       "M2",
       "M4",
       "M5"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M4": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M2",
       "M3",
       "M5",
       "M6"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M5": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M3",
       "M4",
       "M6",
       "M7"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M6": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M4",
       "M5",
       "M7",
       "M8"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M7": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M5",
       "M6",
       "M8",
       "M9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M8": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M10",
       "M6",
       "M7",
       "M9"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M9": {
-    "area": "Oblast M",
+    "area": "Matematika",
     "neighbors": [
       "M10",
       "M11",
       "M7",
       "M8"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "V1": {
-    "area": "Oblast V",
+    "area": "Všeobecnosti",
     "neighbors": [
       "V2"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#ffff33"
   },
   "V2": {
-    "area": "Oblast V",
+    "area": "Všeobecnosti",
     "neighbors": [
       "V1"
-    ]
+    ],
+    "patro": "1. NP",
+    "studovna": "Studovna Fyziky",
+    "color": "#ffff33"
   },
   "VZ1": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ2",
       "VZ3"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ10": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ11",
       "VZ12",
       "VZ8",
       "VZ9"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ11": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ10",
       "VZ12",
       "VZ13",
       "VZ9"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ12": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ10",
       "VZ11",
       "VZ13",
       "VZ14"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ13": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ11",
       "VZ12",
       "VZ14",
       "VZ15"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ14": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ12",
       "VZ13",
       "VZ15",
       "VZ16"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ15": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ13",
       "VZ14",
       "VZ16",
       "VZ17"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ16": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ14",
       "VZ15",
       "VZ17",
       "VZ18"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ17": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ15",
       "VZ16",
       "VZ18",
       "VZ19"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ18": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ16",
       "VZ17",
       "VZ19",
       "VZ20"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ19": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ17",
       "VZ18",
       "VZ20",
       "VZ21"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ2": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ1",
       "VZ3",
       "VZ4"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ20": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ18",
       "VZ19",
       "VZ21",
       "VZ22"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ21": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ19",
       "VZ20",
       "VZ22",
       "VZ23"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ22": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ20",
       "VZ21",
       "VZ23",
       "VZ24"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ23": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ21",
       "VZ22",
       "VZ24",
       "VZ25"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ24": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ22",
       "VZ23",
       "VZ25",
       "VZ26"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ25": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ23",
       "VZ24",
       "VZ26",
       "VZ27"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ26": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ24",
       "VZ25",
       "VZ27",
       "VZ28"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ27": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ25",
       "VZ26",
       "VZ28",
       "VZ29"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ28": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ26",
       "VZ27",
       "VZ29",
       "VZ30"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ29": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ27",
       "VZ28",
       "VZ30",
       "VZ31"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ3": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ1",
       "VZ2",
       "VZ4",
       "VZ5"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ30": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ28",
       "VZ29",
       "VZ31",
       "VZ32"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ31": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ29",
       "VZ30",
       "VZ32",
       "VZ33"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ32": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ30",
       "VZ31",
       "VZ33",
       "VZ34"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ33": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ31",
       "VZ32",
       "VZ34",
       "VZ35"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ34": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ32",
       "VZ33",
       "VZ35",
       "VZ36"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ35": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ33",
       "VZ34",
       "VZ36",
       "VZ37"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ36": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ34",
       "VZ35",
       "VZ37",
       "VZ38"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ37": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ35",
       "VZ36",
       "VZ38",
       "VZ39"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ38": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ36",
       "VZ37",
       "VZ39",
       "VZ40"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ39": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ37",
       "VZ38",
       "VZ40",
       "VZ41"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ4": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ2",
       "VZ3",
       "VZ5",
       "VZ6"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ40": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ38",
       "VZ39",
       "VZ41",
       "VZ42"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ41": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ39",
       "VZ40",
       "VZ42",
       "VZ43"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ42": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ40",
       "VZ41",
       "VZ43"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ43": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ41",
       "VZ42"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ5": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ3",
       "VZ4",
       "VZ6",
       "VZ7"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ6": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ4",
       "VZ5",
       "VZ7",
       "VZ8"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ7": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ5",
       "VZ6",
       "VZ8",
       "VZ9"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ8": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ10",
       "VZ6",
       "VZ7",
       "VZ9"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ9": {
-    "area": "Všeobecné znalosti",
+    "area": "Vědy o Zemi",
     "neighbors": [
       "VZ10",
       "VZ11",
       "VZ7",
       "VZ8"
-    ]
+    ],
+    "patro": "2. NP",
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   }
 };

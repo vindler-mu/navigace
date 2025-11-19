@@ -493,14 +493,24 @@
 
         function showResult(inputSignature, bookData) {
             const resultsDiv = document.getElementById('results');
-            
+
             let regalDisplay = bookData.regal;
             let regalNote = "";
-            
+
+            // Získej první regál pro určení umístění
+            let firstRegal = bookData.regal;
             if (bookData.regal.includes('-')) {
+                firstRegal = bookData.regal.split('-')[0].trim();
                 regalNote = " (knihy mohou být v několika regálech)";
             }
-            
+
+            // Získej informace o umístění z regalMap
+            let locationInfo = regalMap[firstRegal] || {
+                studovna: 'Neznámá studovna',
+                patro: 'Neznámé patro',
+                area: 'Neznámá oblast'
+            };
+
             const instructionsClass = 'instructions physics';
             let searchInfo = '';
             
@@ -538,9 +548,10 @@
                 `;
                 
                 nearbyBooks.forEach(shelf => {
+                    const shelfColor = regalMap[shelf.shelf]?.color || '#666666';
                     nearbySection += `
                         <div style="background: white; padding: 12px; border: 1px solid #e9ecef;">
-                            <div style="font-weight: 600; color: #CD0000; margin-bottom: 5px;">Regál ${shelf.shelf}</div>
+                            <div style="font-weight: 600; color: ${shelfColor}; margin-bottom: 5px;">Regál ${shelf.shelf}</div>
                             <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 8px;">${shelf.area}</div>
                             <div style="font-size: 0.85em;">
                     `;
@@ -569,30 +580,30 @@
                 <div class="result">
                     ${searchInfo}
                     <div class="result-header">
-                        <div class="signature">${bookData.signatura}</div>
+                        <div class="signature" style="background: ${locationInfo.color}">${bookData.signatura}</div>
                         <div class="category">${bookData.popis}</div>
                     </div>
-                    
+
                     <div class="location-info">
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Regál</div>
                             <div class="location-value">${regalDisplay}${regalNote}</div>
                         </div>
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Studovna</div>
-                            <div class="location-value">Studovna Fyziky a Všeobecností</div>
+                            <div class="location-value">${locationInfo.studovna}</div>
                         </div>
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Patro</div>
-                            <div class="location-value">1. NP</div>
+                            <div class="location-value">${locationInfo.patro}</div>
                         </div>
                     </div>
 
                     <div class="${instructionsClass}">
                         <h4>Cesta k regálu:</h4>
                         <ol>
-                            <li>Jděte do 1. nadzemního patra</li>
-                            <li>Vstupte do studovny Fyziky po levé straně</li>
+                            <li>Jděte do ${locationInfo.patro}</li>
+                            <li>Vstupte do ${locationInfo.studovna}</li>
                             <li>Najděte regál <strong>${regalDisplay}</strong></li>
                             <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
                             <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
