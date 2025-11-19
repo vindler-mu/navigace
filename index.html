@@ -37,6 +37,7 @@
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 2px solid #e9ecef;
+            position: relative;
         }
 
         .header h1 {
@@ -49,6 +50,37 @@
         .header p {
             color: #6c757d;
             font-size: 1.1em;
+        }
+
+        /* Language switcher */
+        .language-switcher {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover {
+            background: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        .lang-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
         }
 
         .search-section {
@@ -554,8 +586,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Knihovní navigátor</h1>
-            <p>Nalezněte fyzické umístění dokumentů v knihovně PřF MU</p>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="cs">CZ</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <h1 data-i18n="title">Knihovní navigátor</h1>
+            <p data-i18n="subtitle">Nalezněte fyzické umístění dokumentů v knihovně PřF MU</p>
         </div>
 
         <div class="search-section">
@@ -572,12 +608,12 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
                 <div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 15px; border-radius: 4px;">
-                    <h4 style="color: #0c5460; margin: 0 0 8px 0; font-size: 0.95em;">📖 Vyhledávání podle signatury</h4>
-                    <p style="color: #0c5460; margin: 0; font-size: 0.85em;">Zadejte číslo signatury (např. 52, 531.6) nebo název časopisu či sborníku.</p>
+                    <h4 style="color: #0c5460; margin: 0 0 8px 0; font-size: 0.95em;" data-i18n="searchBySignature">📖 Vyhledávání podle signatury</h4>
+                    <p style="color: #0c5460; margin: 0; font-size: 0.85em;" data-i18n="searchBySignatureDesc">Zadejte číslo signatury (např. 52, 531.6) nebo název časopisu či sborníku.</p>
                 </div>
                 <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 4px;">
-                    <h4 style="color: #856404; margin: 0 0 8px 0; font-size: 0.95em;">🔍 Tématické vyhledávání</h4>
-                    <p style="color: #856404; margin: 0; font-size: 0.85em;">Můžete hledat i podle tématu (např. "černé díry", "kvantová mechanika"). Funguje i s překlepy!</p>
+                    <h4 style="color: #856404; margin: 0 0 8px 0; font-size: 0.95em;" data-i18n="searchByTopic">🔍 Tématické vyhledávání</h4>
+                    <p style="color: #856404; margin: 0; font-size: 0.85em;" data-i18n="searchByTopicDesc">Můžete hledat i podle tématu (např. "černé díry", "kvantová mechanika"). Funguje i s překlepy!</p>
                 </div>
             </div>
         </div>
@@ -587,6 +623,137 @@
 
     <script>
         let searchTimeout;
+        let currentLang = 'cs';  // Výchozí jazyk
+
+        // Překladový objekt
+        const translations = {
+            cs: {
+                title: 'Knihovní navigátor',
+                subtitle: 'Nalezněte fyzické umístění dokumentů v knihovně PřF MU',
+                searchPlaceholder: 'Zadejte signaturu nebo téma...',
+                searchBySignature: '📖 Vyhledávání podle signatury',
+                searchBySignatureDesc: 'Zadejte číslo signatury (např. 52, 531.6) nebo název časopisu či sborníku.',
+                searchByTopic: '🔍 Tématické vyhledávání',
+                searchByTopicDesc: 'Můžete hledat i podle tématu (např. "černé díry", "kvantová mechanika"). Funguje i s překlepy!',
+                loading: 'Vyhledávám...',
+                shelf: 'Regál',
+                studyRoom: 'Studovna',
+                floor: 'Patro',
+                pathToShelf: 'Cesta k regálu:',
+                goTo: 'Jděte do',
+                enterThe: 'Vstupte do',
+                findShelf: 'Najděte regál',
+                findSignature: 'Najděte signaturu',
+                lettersAfterNumber: 'Písmena za číslem označují většinou autory a jsou abecedně seřazena',
+                journalsSorted: 'Časopisy a sborníky jsou řazeny abecedně podle názvu',
+                walkThrough: 'Projděte studovnou Matematiky a dejte se po schodech dolů do Studovny Antropologie',
+                booksNearby: '📚 Knihy nablízku:',
+                previouslyPublished: 'Dříve vycházel jako:',
+                nowPublished: 'Nyní vychází jako:',
+                // Cookie consent
+                cookieText: 'ℹ️ Tato stránka nepoužívá cookies ani nesbírá osobní údaje. Další informace o pravidlech PřF MU najdete na',
+                cookieAccept: 'Rozumím',
+                // Feedback
+                feedbackButton: '💬 Nahlásit problém',
+                feedbackTitle: 'Nahlásit problém',
+                feedbackSubtitle: 'Pomožte nám zlepšit aplikaci. Popište, co se stalo nebo co jste nenašli.',
+                feedbackHowItWorks: 'ℹ️ Jak to funguje:',
+                feedbackInfo1: 'Toto je pouze <strong>šablona pro předvyplnění</strong>',
+                feedbackInfo2: 'Po kliknutí na "Odeslat" se otevře váš <strong>emailový klient</strong>',
+                feedbackInfo3: 'Email můžete ještě upravit a pak odeslat',
+                feedbackVisitDesk: '💡 Můžete také přijít osobně na <strong>výpůjční pult</strong> – rádi vám poradíme!',
+                feedbackSignatureLabel: 'Signatura, kterou jste hledali',
+                feedbackSignaturePlaceholder: 'např. 52, 531.6, Acta Geodynamica...',
+                feedbackSignatureHelp: 'Nepovinné - pomůže nám to lépe pochopit problém',
+                feedbackDescriptionLabel: 'Popis problému *',
+                feedbackDescriptionPlaceholder: 'Popište co se stalo, co jste nenašli, nebo jaká byla chyba...',
+                feedbackEmailLabel: 'Váš email (pro odpověď)',
+                feedbackEmailPlaceholder: 'vas@email.cz',
+                feedbackEmailHelp: 'Nepovinné - pokud chcete odpověď',
+                btnCancel: 'Zrušit',
+                btnSubmit: 'Odeslat',
+                rateLimitWarning: 'Můžete odeslat zpětnou vazbu pouze jednou za minutu. Zkuste to prosím později.'
+            },
+            en: {
+                title: 'Library Navigator',
+                subtitle: 'Find the physical location of documents in the PřF MU library',
+                searchPlaceholder: 'Enter signature or topic...',
+                searchBySignature: '📖 Search by signature',
+                searchBySignatureDesc: 'Enter signature number (e.g. 52, 531.6) or journal/proceedings name.',
+                searchByTopic: '🔍 Thematic search',
+                searchByTopicDesc: 'You can also search by topic (e.g. "black holes", "quantum mechanics"). Works even with typos!',
+                loading: 'Searching...',
+                shelf: 'Shelf',
+                studyRoom: 'Study room',
+                floor: 'Floor',
+                pathToShelf: 'Path to shelf:',
+                goTo: 'Go to',
+                enterThe: 'Enter the',
+                findShelf: 'Find shelf',
+                findSignature: 'Find signature',
+                lettersAfterNumber: 'Letters after the number usually indicate authors and are arranged alphabetically',
+                journalsSorted: 'Journals and proceedings are sorted alphabetically by name',
+                walkThrough: 'Walk through the Mathematics study room and go down the stairs to the Anthropology study room',
+                booksNearby: '📚 Books nearby:',
+                previouslyPublished: 'Previously published as:',
+                nowPublished: 'Now published as:',
+                // Cookie consent
+                cookieText: 'ℹ️ This site does not use cookies or collect personal data. For more information about PřF MU policies, visit',
+                cookieAccept: 'I understand',
+                // Feedback
+                feedbackButton: '💬 Report a problem',
+                feedbackTitle: 'Report a problem',
+                feedbackSubtitle: 'Help us improve the application. Describe what happened or what you couldn\'t find.',
+                feedbackHowItWorks: 'ℹ️ How it works:',
+                feedbackInfo1: 'This is only a <strong>pre-fill template</strong>',
+                feedbackInfo2: 'After clicking "Submit", your <strong>email client</strong> will open',
+                feedbackInfo3: 'You can still edit the email before sending',
+                feedbackVisitDesk: '💡 You can also visit the <strong>circulation desk</strong> in person – we\'ll be happy to help!',
+                feedbackSignatureLabel: 'Signature you were looking for',
+                feedbackSignaturePlaceholder: 'e.g. 52, 531.6, Acta Geodynamica...',
+                feedbackSignatureHelp: 'Optional - helps us better understand the problem',
+                feedbackDescriptionLabel: 'Problem description *',
+                feedbackDescriptionPlaceholder: 'Describe what happened, what you couldn\'t find, or what error occurred...',
+                feedbackEmailLabel: 'Your email (for reply)',
+                feedbackEmailPlaceholder: 'your@email.com',
+                feedbackEmailHelp: 'Optional - if you want a response',
+                btnCancel: 'Cancel',
+                btnSubmit: 'Submit',
+                rateLimitWarning: 'You can only submit feedback once per minute. Please try again later.'
+            }
+        };
+
+        // Funkce pro překlad
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Aktualizuj všechny elementy s data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    elem.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Aktualizuj placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    elem.placeholder = translations[lang][key];
+                }
+            });
+
+            // Aktualizuj search input placeholder
+            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+
+            // Aktualizuj aktivní tlačítko
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
 
         // Fuzzy search - Levenshtein distance algoritmus
         function levenshteinDistance(str1, str2) {
@@ -831,7 +998,7 @@
             if (nearbyBooks.length > 0) {
                 nearbySection = `
                     <div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; margin-top: 20px;">
-                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">📚 Knihy nablízku:</h4>
+                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">${translations[currentLang].booksNearby}</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                 `;
                 
@@ -878,7 +1045,7 @@
                 }
                 journalNameChange = `
                     <div class="info-box" style="background: rgba(255, 165, 0, 0.1); border: 1px solid rgba(255, 165, 0, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
-                        <p style="margin: 0; color: #cc8800;">📰 <strong>Dříve vycházel jako:</strong>${oldNamesHtml}</p>
+                        <p style="margin: 0; color: #cc8800;">📰 <strong>${translations[currentLang].previouslyPublished}</strong>${oldNamesHtml}</p>
                     </div>
                 `;
             } else if (bookData.popis_novy && bookData.popis_novy.trim() !== '') {
@@ -893,7 +1060,7 @@
                 }
                 journalNameChange = `
                     <div class="info-box" style="background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
-                        <p style="margin: 0; color: #0066cc;">📰 <strong>Nyní vychází jako:</strong>${newNamesHtml}</p>
+                        <p style="margin: 0; color: #0066cc;">📰 <strong>${translations[currentLang].nowPublished}</strong>${newNamesHtml}</p>
                     </div>
                 `;
             }
@@ -908,39 +1075,39 @@
 
                     <div class="location-info">
                         <div class="location-item" style="border-left-color: ${locationInfo.color}">
-                            <div class="location-label">Regál</div>
+                            <div class="location-label">${translations[currentLang].shelf}</div>
                             <div class="location-value">${regalDisplay}${regalNote}</div>
                         </div>
                         <div class="location-item" style="border-left-color: ${locationInfo.color}">
-                            <div class="location-label">Studovna</div>
+                            <div class="location-label">${translations[currentLang].studyRoom}</div>
                             <div class="location-value">${locationInfo.studovna}</div>
                         </div>
                         <div class="location-item" style="border-left-color: ${locationInfo.color}">
-                            <div class="location-label">Patro</div>
+                            <div class="location-label">${translations[currentLang].floor}</div>
                             <div class="location-value">${locationInfo.patro}</div>
                         </div>
                     </div>
 
                     <div class="instructions" style="background: ${bgColor}; border: 1px solid ${borderColor};">
-                        <h4 style="color: ${textColor};">Cesta k regálu:</h4>
+                        <h4 style="color: ${textColor};">${translations[currentLang].pathToShelf}</h4>
                         <ol style="color: ${textColor};">
                             ${locationInfo.area === 'Antropologie' ? `
-                                <li>Jděte do 1. NP - Studovna Matematiky</li>
-                                <li>Projděte studovnou Matematiky a dejte se po schodech dolů do Studovny Antropologie</li>
-                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                                <li>Najděte signaturu <strong>${bookData.signatura} ${bookData.popis}</strong></li>
-                                <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                                <li>${translations[currentLang].goTo} 1. NP - Studovna Matematiky</li>
+                                <li>${translations[currentLang].walkThrough}</li>
+                                <li>${translations[currentLang].findShelf} <strong>${regalDisplay}</strong></li>
+                                <li>${translations[currentLang].findSignature} <strong>${bookData.signatura} ${bookData.popis}</strong></li>
+                                <li>${translations[currentLang].lettersAfterNumber}</li>
                             ` : bookData.typ && bookData.typ.includes('časopis') ? `
-                                <li>Jděte do ${locationInfo.patro}</li>
-                                <li>Vstupte do ${locationInfo.studovna}</li>
-                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                                <li>Časopisy a sborníky jsou řazeny abecedně podle názvu</li>
+                                <li>${translations[currentLang].goTo} ${locationInfo.patro}</li>
+                                <li>${translations[currentLang].enterThe} ${locationInfo.studovna}</li>
+                                <li>${translations[currentLang].findShelf} <strong>${regalDisplay}</strong></li>
+                                <li>${translations[currentLang].journalsSorted}</li>
                             ` : `
-                                <li>Jděte do ${locationInfo.patro}</li>
-                                <li>Vstupte do ${locationInfo.studovna}</li>
-                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                                <li>Najděte signaturu <strong>${bookData.signatura} ${bookData.popis}</strong></li>
-                                <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                                <li>${translations[currentLang].goTo} ${locationInfo.patro}</li>
+                                <li>${translations[currentLang].enterThe} ${locationInfo.studovna}</li>
+                                <li>${translations[currentLang].findShelf} <strong>${regalDisplay}</strong></li>
+                                <li>${translations[currentLang].findSignature} <strong>${bookData.signatura} ${bookData.popis}</strong></li>
+                                <li>${translations[currentLang].lettersAfterNumber}</li>
                             `}
                         </ol>
                     </div>
@@ -965,7 +1132,7 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = `
                 <div class="loading">
-                    Hledám knihu
+                    ${translations[currentLang].loading}
                 </div>
             `;
         }
@@ -1125,6 +1292,14 @@
             document.getElementById('cookieConsent').classList.remove('show');
         });
 
+        // Event listenery pro přepínač jazyka
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
         window.addEventListener('load', function() {
             searchInput.focus();
             checkCookieConsent();
@@ -1135,57 +1310,57 @@
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-consent-content">
             <div class="cookie-consent-text">
-                <p>ℹ️ Tato stránka nepoužívá cookies ani nesbírá osobní údaje. Další informace o pravidlech PřF MU najdete na <a href="https://www.sci.muni.cz/" target="_blank" style="color: #3498db; text-decoration: underline;">sci.muni.cz</a>.</p>
+                <p><span data-i18n="cookieText">ℹ️ Tato stránka nepoužívá cookies ani nesbírá osobní údaje. Další informace o pravidlech PřF MU najdete na</span> <a href="https://www.sci.muni.cz/" target="_blank" style="color: #3498db; text-decoration: underline;">sci.muni.cz</a>.</p>
             </div>
-            <button id="acceptCookies" class="cookie-consent-button">Rozumím</button>
+            <button id="acceptCookies" class="cookie-consent-button" data-i18n="cookieAccept">Rozumím</button>
         </div>
     </div>
 
     <!-- Plovoucí tlačítko pro feedback -->
-    <button id="feedbackButton" class="feedback-button">💬 Nahlásit problém</button>
+    <button id="feedbackButton" class="feedback-button"><span data-i18n="feedbackButton">💬 Nahlásit problém</span></button>
 
     <!-- Modal pro feedback -->
     <div id="feedbackModal" class="modal-overlay">
         <div class="modal-content" style="position: relative;">
             <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
             <div class="modal-header">
-                <h3>Nahlásit problém</h3>
-                <p>Pomožte nám zlepšit aplikaci. Popište, co se stalo nebo co jste nenašli.</p>
+                <h3 data-i18n="feedbackTitle">Nahlásit problém</h3>
+                <p data-i18n="feedbackSubtitle">Pomožte nám zlepšit aplikaci. Popište, co se stalo nebo co jste nenašli.</p>
             </div>
 
             <!-- Info o fungování formuláře -->
             <div style="background: #e7f3ff; border-left: 4px solid #3498db; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-                <p style="margin: 0 0 10px 0; color: #2c3e50; font-weight: 500; font-size: 0.95em;">ℹ️ Jak to funguje:</p>
-                <ul style="margin: 0; padding-left: 20px; color: #2c3e50; font-size: 0.9em; line-height: 1.6;">
-                    <li>Toto je pouze <strong>šablona pro předvyplnění</strong></li>
-                    <li>Po kliknutí na "Odeslat" se otevře váš <strong>emailový klient</strong></li>
-                    <li>Email můžete ještě upravit a pak odeslat</li>
+                <p style="margin: 0 0 10px 0; color: #2c3e50; font-weight: 500; font-size: 0.95em;" data-i18n="feedbackHowItWorks">ℹ️ Jak to funguje:</p>
+                <ul style="margin: 0; padding-left: 20px; color: #2c3e50; font-size: 0.9em; line-height: 1.6;" id="feedbackInfoList">
+                    <li data-i18n="feedbackInfo1">Toto je pouze <strong>šablona pro předvyplnění</strong></li>
+                    <li data-i18n="feedbackInfo2">Po kliknutí na "Odeslat" se otevře váš <strong>emailový klient</strong></li>
+                    <li data-i18n="feedbackInfo3">Email můžete ještě upravit a pak odeslat</li>
                 </ul>
-                <p style="margin: 10px 0 0 0; color: #2c3e50; font-size: 0.9em; line-height: 1.6;">
+                <p style="margin: 10px 0 0 0; color: #2c3e50; font-size: 0.9em; line-height: 1.6;" data-i18n="feedbackVisitDesk">
                     💡 Můžete také přijít osobně na <strong>výpůjční pult</strong> – rádi vám poradíme!
                 </p>
             </div>
 
             <form id="feedbackForm">
                 <div class="form-group">
-                    <label for="feedbackSignature">Signatura, kterou jste hledali</label>
-                    <input type="text" id="feedbackSignature" placeholder="např. 52, 531.6, Acta Geodynamica...">
-                    <small>Nepovinné - pomůže nám to lépe pochopit problém</small>
+                    <label for="feedbackSignature" data-i18n="feedbackSignatureLabel">Signatura, kterou jste hledali</label>
+                    <input type="text" id="feedbackSignature" data-i18n-placeholder="feedbackSignaturePlaceholder" placeholder="např. 52, 531.6, Acta Geodynamica...">
+                    <small data-i18n="feedbackSignatureHelp">Nepovinné - pomůže nám to lépe pochopit problém</small>
                 </div>
                 <div class="form-group">
-                    <label for="feedbackDescription">Popis problému *</label>
-                    <textarea id="feedbackDescription" placeholder="Popište co se stalo, co jste nenašli, nebo jaká byla chyba..." required></textarea>
+                    <label for="feedbackDescription" data-i18n="feedbackDescriptionLabel">Popis problému *</label>
+                    <textarea id="feedbackDescription" data-i18n-placeholder="feedbackDescriptionPlaceholder" placeholder="Popište co se stalo, co jste nenašli, nebo jaká byla chyba..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="feedbackEmail">Váš email (pro odpověď)</label>
-                    <input type="email" id="feedbackEmail" placeholder="vas@email.cz">
-                    <small>Nepovinné - pokud chcete odpověď</small>
+                    <label for="feedbackEmail" data-i18n="feedbackEmailLabel">Váš email (pro odpověď)</label>
+                    <input type="email" id="feedbackEmail" data-i18n-placeholder="feedbackEmailPlaceholder" placeholder="vas@email.cz">
+                    <small data-i18n="feedbackEmailHelp">Nepovinné - pokud chcete odpověď</small>
                 </div>
                 <!-- Honeypot pole (skryté pro lidi, viditelné pro roboty) -->
                 <input type="text" id="website" name="website" style="display: none;" tabindex="-1" autocomplete="off">
                 <div class="modal-buttons">
-                    <button type="button" class="btn btn-secondary" onclick="closeFeedbackModal()">Zrušit</button>
-                    <button type="submit" class="btn btn-primary">Odeslat</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeFeedbackModal()" data-i18n="btnCancel">Zrušit</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="btnSubmit">Odeslat</button>
                 </div>
             </form>
         </div>
@@ -1253,7 +1428,7 @@
             // 2. Rate limiting (max 1 odeslání za 60 sekund)
             const now = Date.now();
             if (now - lastFeedbackTime < 60000) {
-                alert('Můžete odeslat zpětnou vazbu pouze jednou za minutu. Zkuste to prosím později.');
+                alert(translations[currentLang].rateLimitWarning);
                 return;
             }
 
