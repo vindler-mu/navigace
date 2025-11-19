@@ -390,6 +390,17 @@
                             });
                         }
                     }
+
+                    // Hledání ve starém názvu časopisu
+                    if (item.popis_stary && item.popis_stary.toLowerCase().includes(searchTerm)) {
+                        if (!matches.find(match => match.signatura === item.signatura)) {
+                            matches.push({
+                                ...item,
+                                matchType: 'old_name',
+                                matchedKeyword: null
+                            });
+                        }
+                    }
                 }
             }
             
@@ -551,6 +562,22 @@
                 `;
             }
             
+            // Info o změně názvu časopisu
+            let journalNameChange = '';
+            if (bookData.popis_stary && bookData.popis_stary.trim() !== '') {
+                journalNameChange = `
+                    <div class="info-box" style="background: rgba(255, 165, 0, 0.1); border: 1px solid rgba(255, 165, 0, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
+                        <p style="margin: 0; color: #cc8800;">📰 <strong>Dříve vycházel jako:</strong> ${bookData.popis_stary}</p>
+                    </div>
+                `;
+            } else if (bookData.popis_novy && bookData.popis_novy.trim() !== '') {
+                journalNameChange = `
+                    <div class="info-box" style="background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); margin: 15px 0; padding: 10px; border-radius: 5px;">
+                        <p style="margin: 0; color: #0066cc;">📰 <strong>Nyní vychází jako:</strong> ${bookData.popis_novy}</p>
+                    </div>
+                `;
+            }
+
             resultsDiv.innerHTML = `
                 <div class="result">
                     ${searchInfo}
@@ -558,6 +585,7 @@
                         <div class="signature" style="background: ${locationInfo.color}">${bookData.signatura}</div>
                         <div class="category">${bookData.popis}</div>
                     </div>
+                    ${journalNameChange}
 
                     <div class="location-info">
                         <div class="location-item" style="border-left-color: ${locationInfo.color}">
