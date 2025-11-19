@@ -479,7 +479,8 @@
                 const b = parseInt(rgbaMatch[3], 16);
                 bgColor = `rgba(${r}, ${g}, ${b}, 0.05)`;
                 borderColor = `rgba(${r}, ${g}, ${b}, 0.3)`;
-                textColor = locationInfo.color;
+                // Pro světlé barvy (Všeobecnosti) použij černou
+                textColor = locationInfo.color === '#e1df10' ? '#000000' : locationInfo.color;
             } else {
                 bgColor = '#e7f3ff';
                 borderColor = '#bee5eb';
@@ -580,15 +581,18 @@
                                 <li>Jděte do 1. NP - Studovna Matematiky</li>
                                 <li>Projděte studovnou Matematiky a dejte se po schodech dolů do Studovny Antropologie</li>
                                 <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                                <li>Najděte téma <strong>${bookData.popis}</strong></li>
-                                <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
+                                <li>Najděte signaturu <strong>${bookData.signatura} ${bookData.popis}</strong></li>
                                 <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
+                            ` : bookData.typ && bookData.typ.includes('časopis') ? `
+                                <li>Jděte do ${locationInfo.patro}</li>
+                                <li>Vstupte do ${locationInfo.studovna}</li>
+                                <li>Najděte regál <strong>${regalDisplay}</strong></li>
+                                <li>Časopisy a sborníky jsou řazeny abecedně podle názvu</li>
                             ` : `
                                 <li>Jděte do ${locationInfo.patro}</li>
                                 <li>Vstupte do ${locationInfo.studovna}</li>
                                 <li>Najděte regál <strong>${regalDisplay}</strong></li>
-                                <li>Najděte téma <strong>${bookData.popis}</strong></li>
-                                <li>Hledejte knihy se signaturou <strong>${bookData.signatura}</strong></li>
+                                <li>Najděte signaturu <strong>${bookData.signatura} ${bookData.popis}</strong></li>
                                 <li>Písmena za číslem označují většinou autory a jsou abecedně seřazena</li>
                             `}
                         </ol>
