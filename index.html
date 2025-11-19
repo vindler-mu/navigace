@@ -52,18 +52,22 @@
         .header-content {
             flex: 1;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .header h1 {
             font-size: 2.5em;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 8px;
+            margin: 0;
         }
 
         .header p {
             color: #6c757d;
             font-size: 1.1em;
+            margin: 5px 0 0 0;
         }
 
         /* Language switcher */
@@ -751,12 +755,13 @@
 
         // Funkce pro překlad
         function setLanguage(lang) {
+            console.log('Setting language to:', lang);
             currentLang = lang;
 
             // Aktualizuj všechny elementy s data-i18n
             document.querySelectorAll('[data-i18n]').forEach(elem => {
                 const key = elem.getAttribute('data-i18n');
-                if (translations[lang][key]) {
+                if (translations[lang] && translations[lang][key]) {
                     elem.innerHTML = translations[lang][key];
                 }
             });
@@ -764,13 +769,16 @@
             // Aktualizuj placeholders
             document.querySelectorAll('[data-i18n-placeholder]').forEach(elem => {
                 const key = elem.getAttribute('data-i18n-placeholder');
-                if (translations[lang][key]) {
+                if (translations[lang] && translations[lang][key]) {
                     elem.placeholder = translations[lang][key];
                 }
             });
 
             // Aktualizuj search input placeholder
-            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+            const searchInputElem = document.getElementById('searchInput');
+            if (searchInputElem && translations[lang] && translations[lang].searchPlaceholder) {
+                searchInputElem.placeholder = translations[lang].searchPlaceholder;
+            }
 
             // Aktualizuj aktivní tlačítko
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -779,6 +787,8 @@
                     btn.classList.add('active');
                 }
             });
+
+            console.log('Language changed to:', lang);
         }
 
         // Fuzzy search - Levenshtein distance algoritmus
@@ -1319,9 +1329,15 @@
         });
 
         window.addEventListener('load', function() {
+            console.log('Page loaded');
+
             // Event listenery pro přepínač jazyka
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            console.log('Found language buttons:', langButtons.length);
+
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    console.log('Language button clicked:', this.getAttribute('data-lang'));
                     const lang = this.getAttribute('data-lang');
                     setLanguage(lang);
                 });
