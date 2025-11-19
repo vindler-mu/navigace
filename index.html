@@ -168,8 +168,6 @@
         }
 
         .instructions {
-            background: #e7f3ff;
-            border: 1px solid #bee5eb;
             border-radius: 0;
             padding: 20px;
             margin-top: 15px;
@@ -518,23 +516,23 @@
             if (bookData.searchType === 'thematic') {
                 if (bookData.matchType === 'fuzzy') {
                     searchInfo += `<div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ” Nalezeno s překlepem: "<strong>${bookData.originalQuery}</strong>" â†’ "<strong>${bookData.matchedKeyword}</strong>"
+                        ðŸ” 🔍 Nalezeno s překlepem: "<strong>${bookData.originalQuery}</strong>" â†’ "<strong>${bookData.matchedKeyword}</strong>"
                         ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 } else if (bookData.matchedKeyword) {
                     searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ’¡ Nalezeno podle tématu: <strong>${bookData.matchedKeyword}</strong>
+                        ðŸ’¡ 💡 Nalezeno podle tématu: <strong>${bookData.matchedKeyword}</strong>
                         ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 } else {
                     searchInfo += `<div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                        ðŸ’¡ Nalezeno podle popisu tématu
+                        ðŸ’¡ 💡 Nalezeno podle popisu tématu
                         ${bookData.allMatches > 1 ? ` (celkem ${bookData.allMatches} souvisejících signatur)` : ''}
                     </div>`;
                 }
             } else if (bookData.searchType === 'partial') {
                 searchInfo += `<div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
-                    â†—ï¸ Nalezena podobná signatura
+                    â†—ï¸ ↗️ Nalezena podobná signatura
                 </div>`;
             }
             
@@ -544,7 +542,7 @@
             if (nearbyBooks.length > 0) {
                 nearbySection = `
                     <div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; margin-top: 20px;">
-                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">ðŸ“ Knihy nablízku:</h4>
+                        <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.1em;">ðŸ“ 📚 Knihy nablízku:</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                 `;
                 
@@ -558,7 +556,7 @@
                     `;
                     
                     shelf.books.slice(0, 2).forEach(book => {
-                        nearbySection += `<div style="margin-bottom: 3px;">â€¢ ${book.signatura} - ${book.popis.substring(0, 40)}${book.popis.length > 40 ? '...' : ''}</div>`;
+                        nearbySection += `<div style="margin-bottom: 3px;">• ${book.signatura} - ${book.popis.substring(0, 40)}${book.popis.length > 40 ? '...' : ''}</div>`;
                     });
                     
                     if (shelf.books.length > 2) {
