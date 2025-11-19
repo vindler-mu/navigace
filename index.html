@@ -81,30 +81,6 @@
             color: #adb5bd;
         }
 
-        .examples {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
-        .example-btn {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 0;
-            padding: 8px 16px;
-            font-size: 0.9em;
-            color: #495057;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .example-btn:hover {
-            background: #e9ecef;
-            border-color: #adb5bd;
-        }
-
         .result {
             background: #fff;
             border: 1px solid #e9ecef;
@@ -253,30 +229,29 @@
     <div class="container">
         <div class="header">
             <h1>Knihovní navigátor</h1>
-            <p>Nalezněte fyzické umístění knih v knihovně PřF MU podle signatury</p>
-            <p style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">
-                <em>Tip: Funguje i s překlepem! Zkuste "cerne diry" nebo "kvatova mechanika"</em>
-            </p>
+            <p>Nalezněte fyzické umístění knih v knihovně PřF MU</p>
         </div>
 
         <div class="search-section">
             <div class="search-container">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-input" 
-                    placeholder="Zadejte signaturu (52-ABCD) nebo téma (i s překlepem: cerne diry)"
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Zadejte signaturu nebo téma..."
                     autocomplete="off"
                 >
             </div>
-            
-            <div class="examples">
-                <button class="example-btn" onclick="searchExample('52-ABCD')">52-ABCD</button>
-                <button class="example-btn" onclick="searchExample('cerne diry')">cerne diry</button>
-                <button class="example-btn" onclick="searchExample('538.93-XYZ')">538.93-XYZ</button>
-                <button class="example-btn" onclick="searchExample('kvatova mechanika')">kvatova mechanika</button>
-                <button class="example-btn" onclick="searchExample('531.6')">531.6</button>
-                <button class="example-btn" onclick="searchExample('elektromagetismus')">elektromagetismus</button>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                <div style="background: #e7f3ff; border: 1px solid #bee5eb; padding: 15px; border-radius: 4px;">
+                    <h4 style="color: #0c5460; margin: 0 0 8px 0; font-size: 0.95em;">📖 Vyhledávání podle signatury</h4>
+                    <p style="color: #0c5460; margin: 0; font-size: 0.85em;">Zadejte číslo signatury (např. 52, 531.6) nebo název časopisu či sborníku.</p>
+                </div>
+                <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 4px;">
+                    <h4 style="color: #856404; margin: 0 0 8px 0; font-size: 0.95em;">🔍 Tématické vyhledávání</h4>
+                    <p style="color: #856404; margin: 0; font-size: 0.85em;">Můžete hledat i podle tématu (např. "černé díry", "kvantová mechanika"). Funguje i s překlepy!</p>
+                </div>
             </div>
         </div>
 
@@ -654,12 +629,6 @@
                     showError(`Pro signaturu "${inputSignature}" nebyla nalezena žádná kniha.`);
                 }
             }, 300);
-        }
-
-        function searchExample(signature) {
-            const input = document.getElementById('searchInput');
-            input.value = signature;
-            findBook();
         }
 
         // Event listenery
