@@ -15435,7 +15435,8 @@ const regalMap = {
     "area": "Neznámá oblast",
     "neighbors": [],
     "patro": "Neznámé",
-    "studovna": "Neznámá studovna"
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "17": {
     "area": "Neznámá oblast",
@@ -15443,7 +15444,8 @@ const regalMap = {
       "18"
     ],
     "patro": "Neznámé",
-    "studovna": "Neznámá studovna"
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "18": {
     "area": "Neznámá oblast",
@@ -15451,13 +15453,15 @@ const regalMap = {
       "17"
     ],
     "patro": "Neznámé",
-    "studovna": "Neznámá studovna"
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "4": {
     "area": "Neznámá oblast",
     "neighbors": [],
     "patro": "Neznámé",
-    "studovna": "Neznámá studovna"
+    "studovna": "Neznámá studovna",
+    "color": "#666666"
   },
   "A1": {
     "area": "Antropologie",
@@ -15466,7 +15470,8 @@ const regalMap = {
       "A3"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A2": {
     "area": "Antropologie",
@@ -15476,7 +15481,8 @@ const regalMap = {
       "A4"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A3": {
     "area": "Antropologie",
@@ -15487,7 +15493,8 @@ const regalMap = {
       "A5"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A4": {
     "area": "Antropologie",
@@ -15498,7 +15505,8 @@ const regalMap = {
       "A6"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A5": {
     "area": "Antropologie",
@@ -15509,7 +15517,8 @@ const regalMap = {
       "A7"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A6": {
     "area": "Antropologie",
@@ -15520,7 +15529,8 @@ const regalMap = {
       "A8"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A7": {
     "area": "Antropologie",
@@ -15531,7 +15541,8 @@ const regalMap = {
       "A9"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A8": {
     "area": "Antropologie",
@@ -15541,7 +15552,8 @@ const regalMap = {
       "A9"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "A9": {
     "area": "Antropologie",
@@ -15550,7 +15562,8 @@ const regalMap = {
       "A8"
     ],
     "patro": "1. NP - mezipatro",
-    "studovna": "Studovna Antropologie"
+    "studovna": "Studovna Antropologie",
+    "color": "#00ccff"
   },
   "F1": {
     "area": "Fyzika",
@@ -15559,7 +15572,8 @@ const regalMap = {
       "F3"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F10": {
     "area": "Fyzika",
@@ -15570,7 +15584,8 @@ const regalMap = {
       "F9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F11": {
     "area": "Fyzika",
@@ -15581,7 +15596,8 @@ const regalMap = {
       "F9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F12": {
     "area": "Fyzika",
@@ -15592,7 +15608,8 @@ const regalMap = {
       "F14"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F13": {
     "area": "Fyzika",
@@ -15603,7 +15620,8 @@ const regalMap = {
       "F15"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F14": {
     "area": "Fyzika",
@@ -15614,7 +15632,8 @@ const regalMap = {
       "F16"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F15": {
     "area": "Fyzika",
@@ -15625,7 +15644,8 @@ const regalMap = {
       "F17"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F16": {
     "area": "Fyzika",
@@ -15635,7 +15655,8 @@ const regalMap = {
       "F17"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F17": {
     "area": "Fyzika",
@@ -15644,7 +15665,8 @@ const regalMap = {
       "F16"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F2": {
     "area": "Fyzika",
@@ -15654,7 +15676,8 @@ const regalMap = {
       "F4"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F3": {
     "area": "Fyzika",
@@ -15665,7 +15688,8 @@ const regalMap = {
       "F5"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F4": {
     "area": "Fyzika",
@@ -15676,7 +15700,8 @@ const regalMap = {
       "F6"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F5": {
     "area": "Fyzika",
@@ -15687,7 +15712,8 @@ const regalMap = {
       "F7"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F6": {
     "area": "Fyzika",
@@ -15698,7 +15724,8 @@ const regalMap = {
       "F8"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F7": {
     "area": "Fyzika",
@@ -15709,7 +15736,8 @@ const regalMap = {
       "F9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F8": {
     "area": "Fyzika",
@@ -15720,7 +15748,8 @@ const regalMap = {
       "F9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "F9": {
     "area": "Fyzika",
@@ -15731,7 +15760,8 @@ const regalMap = {
       "F8"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#CD0000"
   },
   "M1": {
     "area": "Matematika",
@@ -15740,7 +15770,8 @@ const regalMap = {
       "M3"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M10": {
     "area": "Matematika",
@@ -15750,7 +15781,8 @@ const regalMap = {
       "M9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M11": {
     "area": "Matematika",
@@ -15760,7 +15792,8 @@ const regalMap = {
       "M9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M13": {
     "area": "Matematika",
@@ -15770,7 +15803,8 @@ const regalMap = {
       "M15"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M14": {
     "area": "Matematika",
@@ -15780,7 +15814,8 @@ const regalMap = {
       "M16"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M15": {
     "area": "Matematika",
@@ -15791,7 +15826,8 @@ const regalMap = {
       "M17"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M16": {
     "area": "Matematika",
@@ -15802,7 +15838,8 @@ const regalMap = {
       "M18"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M17": {
     "area": "Matematika",
@@ -15813,7 +15850,8 @@ const regalMap = {
       "M19"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M18": {
     "area": "Matematika",
@@ -15824,7 +15862,8 @@ const regalMap = {
       "M20"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M19": {
     "area": "Matematika",
@@ -15835,7 +15874,8 @@ const regalMap = {
       "M21"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M2": {
     "area": "Matematika",
@@ -15845,7 +15885,8 @@ const regalMap = {
       "M4"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M20": {
     "area": "Matematika",
@@ -15856,7 +15897,8 @@ const regalMap = {
       "M22"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M21": {
     "area": "Matematika",
@@ -15866,7 +15908,8 @@ const regalMap = {
       "M22"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M22": {
     "area": "Matematika",
@@ -15875,7 +15918,8 @@ const regalMap = {
       "M21"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M3": {
     "area": "Matematika",
@@ -15886,7 +15930,8 @@ const regalMap = {
       "M5"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M4": {
     "area": "Matematika",
@@ -15897,7 +15942,8 @@ const regalMap = {
       "M6"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M5": {
     "area": "Matematika",
@@ -15908,7 +15954,8 @@ const regalMap = {
       "M7"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M6": {
     "area": "Matematika",
@@ -15919,7 +15966,8 @@ const regalMap = {
       "M8"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M7": {
     "area": "Matematika",
@@ -15930,7 +15978,8 @@ const regalMap = {
       "M9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M8": {
     "area": "Matematika",
@@ -15941,7 +15990,8 @@ const regalMap = {
       "M9"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "M9": {
     "area": "Matematika",
@@ -15952,7 +16002,8 @@ const regalMap = {
       "M8"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Matematiky"
+    "studovna": "Studovna Matematiky",
+    "color": "#0f11af"
   },
   "V1": {
     "area": "Všeobecnosti",
@@ -15960,7 +16011,8 @@ const regalMap = {
       "V2"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#ffff33"
   },
   "V2": {
     "area": "Všeobecnosti",
@@ -15968,7 +16020,8 @@ const regalMap = {
       "V1"
     ],
     "patro": "1. NP",
-    "studovna": "Studovna Fyziky"
+    "studovna": "Studovna Fyziky",
+    "color": "#ffff33"
   },
   "VZ1": {
     "area": "Vědy o Zemi",
@@ -15977,7 +16030,8 @@ const regalMap = {
       "VZ3"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ10": {
     "area": "Vědy o Zemi",
@@ -15988,7 +16042,8 @@ const regalMap = {
       "VZ9"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ11": {
     "area": "Vědy o Zemi",
@@ -15999,7 +16054,8 @@ const regalMap = {
       "VZ9"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ12": {
     "area": "Vědy o Zemi",
@@ -16010,7 +16066,8 @@ const regalMap = {
       "VZ14"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ13": {
     "area": "Vědy o Zemi",
@@ -16021,7 +16078,8 @@ const regalMap = {
       "VZ15"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ14": {
     "area": "Vědy o Zemi",
@@ -16032,7 +16090,8 @@ const regalMap = {
       "VZ16"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ15": {
     "area": "Vědy o Zemi",
@@ -16043,7 +16102,8 @@ const regalMap = {
       "VZ17"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ16": {
     "area": "Vědy o Zemi",
@@ -16054,7 +16114,8 @@ const regalMap = {
       "VZ18"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ17": {
     "area": "Vědy o Zemi",
@@ -16065,7 +16126,8 @@ const regalMap = {
       "VZ19"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ18": {
     "area": "Vědy o Zemi",
@@ -16076,7 +16138,8 @@ const regalMap = {
       "VZ20"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ19": {
     "area": "Vědy o Zemi",
@@ -16087,7 +16150,8 @@ const regalMap = {
       "VZ21"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ2": {
     "area": "Vědy o Zemi",
@@ -16097,7 +16161,8 @@ const regalMap = {
       "VZ4"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ20": {
     "area": "Vědy o Zemi",
@@ -16108,7 +16173,8 @@ const regalMap = {
       "VZ22"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ21": {
     "area": "Vědy o Zemi",
@@ -16119,7 +16185,8 @@ const regalMap = {
       "VZ23"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ22": {
     "area": "Vědy o Zemi",
@@ -16130,7 +16197,8 @@ const regalMap = {
       "VZ24"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ23": {
     "area": "Vědy o Zemi",
@@ -16141,7 +16209,8 @@ const regalMap = {
       "VZ25"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ24": {
     "area": "Vědy o Zemi",
@@ -16152,7 +16221,8 @@ const regalMap = {
       "VZ26"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ25": {
     "area": "Vědy o Zemi",
@@ -16163,7 +16233,8 @@ const regalMap = {
       "VZ27"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ26": {
     "area": "Vědy o Zemi",
@@ -16174,7 +16245,8 @@ const regalMap = {
       "VZ28"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ27": {
     "area": "Vědy o Zemi",
@@ -16185,7 +16257,8 @@ const regalMap = {
       "VZ29"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ28": {
     "area": "Vědy o Zemi",
@@ -16196,7 +16269,8 @@ const regalMap = {
       "VZ30"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ29": {
     "area": "Vědy o Zemi",
@@ -16207,7 +16281,8 @@ const regalMap = {
       "VZ31"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ3": {
     "area": "Vědy o Zemi",
@@ -16218,7 +16293,8 @@ const regalMap = {
       "VZ5"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ30": {
     "area": "Vědy o Zemi",
@@ -16229,7 +16305,8 @@ const regalMap = {
       "VZ32"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ31": {
     "area": "Vědy o Zemi",
@@ -16240,7 +16317,8 @@ const regalMap = {
       "VZ33"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ32": {
     "area": "Vědy o Zemi",
@@ -16251,7 +16329,8 @@ const regalMap = {
       "VZ34"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ33": {
     "area": "Vědy o Zemi",
@@ -16262,7 +16341,8 @@ const regalMap = {
       "VZ35"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ34": {
     "area": "Vědy o Zemi",
@@ -16273,7 +16353,8 @@ const regalMap = {
       "VZ36"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ35": {
     "area": "Vědy o Zemi",
@@ -16284,7 +16365,8 @@ const regalMap = {
       "VZ37"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ36": {
     "area": "Vědy o Zemi",
@@ -16295,7 +16377,8 @@ const regalMap = {
       "VZ38"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ37": {
     "area": "Vědy o Zemi",
@@ -16306,7 +16389,8 @@ const regalMap = {
       "VZ39"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ38": {
     "area": "Vědy o Zemi",
@@ -16317,7 +16401,8 @@ const regalMap = {
       "VZ40"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ39": {
     "area": "Vědy o Zemi",
@@ -16328,7 +16413,8 @@ const regalMap = {
       "VZ41"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ4": {
     "area": "Vědy o Zemi",
@@ -16339,7 +16425,8 @@ const regalMap = {
       "VZ6"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ40": {
     "area": "Vědy o Zemi",
@@ -16350,7 +16437,8 @@ const regalMap = {
       "VZ42"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ41": {
     "area": "Vědy o Zemi",
@@ -16361,7 +16449,8 @@ const regalMap = {
       "VZ43"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ42": {
     "area": "Vědy o Zemi",
@@ -16371,7 +16460,8 @@ const regalMap = {
       "VZ43"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ43": {
     "area": "Vědy o Zemi",
@@ -16380,7 +16470,8 @@ const regalMap = {
       "VZ42"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ5": {
     "area": "Vědy o Zemi",
@@ -16391,7 +16482,8 @@ const regalMap = {
       "VZ7"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ6": {
     "area": "Vědy o Zemi",
@@ -16402,7 +16494,8 @@ const regalMap = {
       "VZ8"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ7": {
     "area": "Vědy o Zemi",
@@ -16413,7 +16506,8 @@ const regalMap = {
       "VZ9"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ8": {
     "area": "Vědy o Zemi",
@@ -16424,7 +16518,8 @@ const regalMap = {
       "VZ9"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   },
   "VZ9": {
     "area": "Vědy o Zemi",
@@ -16435,6 +16530,7 @@ const regalMap = {
       "VZ8"
     ],
     "patro": "2. NP",
-    "studovna": "Studovna Věd o Zemi"
+    "studovna": "Studovna Věd o Zemi",
+    "color": "#00bf00"
   }
 };

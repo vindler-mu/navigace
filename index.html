@@ -548,9 +548,10 @@
                 `;
                 
                 nearbyBooks.forEach(shelf => {
+                    const shelfColor = regalMap[shelf.shelf]?.color || '#666666';
                     nearbySection += `
                         <div style="background: white; padding: 12px; border: 1px solid #e9ecef;">
-                            <div style="font-weight: 600; color: #CD0000; margin-bottom: 5px;">Regál ${shelf.shelf}</div>
+                            <div style="font-weight: 600; color: ${shelfColor}; margin-bottom: 5px;">Regál ${shelf.shelf}</div>
                             <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 8px;">${shelf.area}</div>
                             <div style="font-size: 0.85em;">
                     `;
@@ -579,20 +580,20 @@
                 <div class="result">
                     ${searchInfo}
                     <div class="result-header">
-                        <div class="signature">${bookData.signatura}</div>
+                        <div class="signature" style="background: ${locationInfo.color}">${bookData.signatura}</div>
                         <div class="category">${bookData.popis}</div>
                     </div>
-                    
+
                     <div class="location-info">
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Regál</div>
                             <div class="location-value">${regalDisplay}${regalNote}</div>
                         </div>
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Studovna</div>
                             <div class="location-value">${locationInfo.studovna}</div>
                         </div>
-                        <div class="location-item">
+                        <div class="location-item" style="border-left-color: ${locationInfo.color}">
                             <div class="location-label">Patro</div>
                             <div class="location-value">${locationInfo.patro}</div>
                         </div>
