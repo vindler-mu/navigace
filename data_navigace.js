@@ -11892,7 +11892,7 @@ const knihovniBaze = [
   {
     "regal": "A8",
     "signatura": "",
-    "popis": "Ethnologia",
+    "popis": "Ethnologia Slovaca et Slavica",
     "popis_novy": "",
     "popis_stary": "",
     "typ": "časopis | sborník",
