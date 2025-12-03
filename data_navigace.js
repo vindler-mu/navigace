@@ -12704,7 +12704,7 @@ const knihovniBaze = [
   },
   {
     "regal": "V2",
-    "signatura": "41.1",
+    "signatura": "41.2",
     "popis": "Němčina",
     "popis_novy": "",
     "popis_stary": "",
@@ -12758,6 +12758,19 @@ const knihovniBaze = [
       "Czech"
     ]
   },
+   {
+    "regal": "V2",
+    "signatura": "43",
+    "popis": "Akademické slovníky a slovníky cizích slov",
+    "popis_novy": "",
+    "popis_stary": "",
+    "typ": "signatura",
+    "tema": "akademický slovní, slovník cizích slov, Czech",
+    "keywords": [
+      "slovník cizích slov",
+      "akademický slovník",
+    ]
+  },
   {
     "regal": "V2",
     "signatura": "45",
@@ -12809,25 +12822,6 @@ const knihovniBaze = [
       "botany",
       "microbiology",
       "cell biology"
-    ]
-  },
-  {
-    "regal": "V2",
-    "signatura": "6",
-    "popis": "Aplikované vědy, Technika, Zemědělství",
-    "popis_novy": "",
-    "popis_stary": "",
-    "typ": "signatura",
-    "tema": "aplikované vědy, technika, inženýrství, zemědělství, applied sciences, engineering, agriculture, technology",
-    "keywords": [
-      "aplikované vědy",
-      "technika",
-      "inženýrství",
-      "zemědělství",
-      "applied sciences",
-      "engineering",
-      "agriculture",
-      "technology"
     ]
   },
   {
@@ -13676,7 +13670,7 @@ const knihovniBaze = [
   },
   {
     "regal": "F7",
-    "signatura": "533",
+    "signatura": "533.9",
     "popis": "Fyzika plazmatu",
     "Sloupec1": "",
     "popis_1": "",
@@ -13783,23 +13777,39 @@ const knihovniBaze = [
   {
     "regal": "F7",
     "signatura": "535.1",
-    "popis": "Elektromagnetická teorie světla | Geometrická optika, Difrakce, Interference, Polarizace",
+    "popis": "Elektromagnetická teorie světla",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "signatura",
-    "tema": "optika, světlo, difrakce, interference, polarizace, geometrická optika",
+    "tema": "elektromagnetické vlny, Maxwell, fotony, elektromagnetické záření",
     "keywords": [
-      "optika",
-      "světlo",
-      "difrakce",
-      "interference",
-      "polarizace",
-      "geometrická optika"
+        "elektromagnetické vlny",
+        "Maxwell",
+        "Maxwellovy rovnice", 
+        "fotony",
+        "elektromagnetické záření"
     ]
   },
   {
     "regal": "F7",
     "signatura": "535.2",
+    "popis": "Geometrická optika, Difrakce, Interference, Polarizace",
+    "Sloupec1": "",
+    "popis_1": "",
+    "typ": "signatura",
+    "tema": "lom světla, refrakce, čočky, interference, polarizace, Huygensův princip",
+    "keywords": [
+        "lom světla",
+        "refrakce",
+        "odraz",
+        "čočky",
+        "Huygensův princip"
+]
+    ]
+  },
+    {
+    "regal": "F7",
+    "signatura": "535.3",
     "popis": "Aplikovaná optika, Optické metody měření, Spektroskopie v IR, IV, Roentgen, Ramanova spektroskopie",
     "Sloupec1": "",
     "popis_1": "",
@@ -13863,7 +13873,7 @@ const knihovniBaze = [
   },
   {
     "regal": "F8",
-    "signatura": "536.2",
+    "signatura": "536.3",
     "popis": "Nízké teploty",
     "Sloupec1": "",
     "popis_1": "",
@@ -14173,6 +14183,20 @@ const knihovniBaze = [
     "regal": "F10",
     "signatura": "",
     "popis": "Acta Universitatis Plackianae",
+    "Sloupec1": "",
+    "popis_1": "",
+    "typ": "časopis | sborník",
+    "tema": "časopis, periodikum, vědecký časopis",
+    "keywords": [
+      "časopis",
+      "periodikum",
+      "vědecký časopis"
+    ]
+  },
+    {
+    "regal": "F10",
+    "signatura": "",
+    "popis": "Advances in Mathematics Research",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -14647,7 +14671,7 @@ const knihovniBaze = [
   {
     "regal": "F12",
     "signatura": "",
-    "popis": "Japanese Journal of applied Physics I.",
+    "popis": "Japanese Journal of Applied Physics I.",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -14661,7 +14685,7 @@ const knihovniBaze = [
   {
     "regal": "F12",
     "signatura": "",
-    "popis": "Japanese Journal of applied Physics II.",
+    "popis": "Japanese Journal of Applied Physics II.",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -14978,7 +15002,7 @@ const knihovniBaze = [
   {
     "regal": "F16",
     "signatura": "",
-    "popis": "Physical Review Letters",
+    "popis": "Physical Review Letters (pokračování)",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -15064,7 +15088,7 @@ const knihovniBaze = [
   {
     "regal": "F16",
     "signatura": "",
-    "popis": "Physics and Polymers",
+    "popis": "Plasma and Polymers",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -15183,7 +15207,7 @@ const knihovniBaze = [
   {
     "regal": "F16",
     "signatura": "",
-    "popis": "Romain Reports in Physics",
+    "popis": "Romanian Reports in Physics",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
@@ -15343,7 +15367,7 @@ const knihovniBaze = [
   {
     "regal": "F17",
     "signatura": "",
-    "popis": "Visnik. Astronomija",
+    "popis": "Vysnik. Astronomija",
     "Sloupec1": "",
     "popis_1": "",
     "typ": "časopis | sborník",
