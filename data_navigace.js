@@ -10169,7 +10169,7 @@ const knihovniBaze = [
   {
     "regal": "M9",
     "signatura": "514",
-    "popis": "Teorie čísel",
+    "popis": "Geometrie",
     "popis_novy": "",
     "popis_stary": "",
     "typ": "signatura",
@@ -10620,7 +10620,7 @@ const knihovniBaze = [
   {
     "regal": "M20",
     "signatura": "",
-    "popis": "Algebraic and geometric topology",
+    "popis": "Algebraic and Geometric Topology",
     "popis_novy": "",
     "popis_stary": "",
     "typ": "časopis | sborník",
@@ -10677,7 +10677,7 @@ const knihovniBaze = [
   {
     "regal": "M20",
     "signatura": "",
-    "popis": "Cahiers de topologie et géométrie différentielle catégoriques",
+    "popis": "Cahiers de Topologie et Géométrie Différentielle Catégoriques",
     "popis_novy": "",
     "popis_stary": "",
     "typ": "časopis | sborník",
