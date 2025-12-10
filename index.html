@@ -652,6 +652,18 @@
     </div>
 
     <script>
+        // DEBUG: Kontrola načtení dat
+        console.log('=== DEBUG ===');
+        console.log('knihovniBaze definováno?', typeof knihovniBaze !== 'undefined');
+        console.log('regalMap definováno?', typeof regalMap !== 'undefined');
+        if (typeof knihovniBaze !== 'undefined') {
+            console.log('knihovniBaze má', knihovniBaze.length, 'položek');
+        }
+        if (typeof regalMap !== 'undefined') {
+            console.log('regalMap má', Object.keys(regalMap).length, 'regálů');
+        }
+        console.log('=============');
+
         let searchTimeout;
         let currentLang = 'cs';  // Výchozí jazyk
 
