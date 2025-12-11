@@ -13804,7 +13804,6 @@ const knihovniBaze = [
         "odraz",
         "čočky",
         "Huygensův princip"
-]
     ]
   },
     {
